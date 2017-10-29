@@ -13,6 +13,7 @@
 		D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D14B77B11FA5899F00DA0771 /* Myuze.xcdatamodeld */; };
 		D14B77B51FA5899F00DA0771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D14B77B41FA5899F00DA0771 /* Assets.xcassets */; };
 		D14B77B81FA5899F00DA0771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14B77B61FA5899F00DA0771 /* LaunchScreen.storyboard */; };
+		D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D161A70B1FA693A80043BBC8 /* mainView.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		D14B77B41FA5899F00DA0771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D14B77B71FA5899F00DA0771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D14B77B91FA5899F00DA0771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D161A70B1FA693A80043BBC8 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */,
 				D14B77AC1FA5899F00DA0771 /* ViewController.swift */,
 				D14B77AE1FA5899F00DA0771 /* Main.storyboard */,
+				D161A70B1FA693A80043BBC8 /* mainView.swift */,
 				D14B77B41FA5899F00DA0771 /* Assets.xcassets */,
 				D14B77B61FA5899F00DA0771 /* LaunchScreen.storyboard */,
 				D14B77B91FA5899F00DA0771 /* Info.plist */,
@@ -221,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
+				D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */,
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,
 			);
