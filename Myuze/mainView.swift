@@ -37,6 +37,9 @@ class mainView: UIViewController {
     var mediaItems:[MPMediaItem]!
     var volumeSlider: MPVolumeView?
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +67,30 @@ class mainView: UIViewController {
         self.player.setQueue(with: mediaCollection)
         player.prepareToPlay()
     }
+    
+    var counter = 0
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        
+        counter += 1
+        
+        if( counter % 2 == 0){
+            player.play()
+            //player.playbackState = .playing
+            albumBackgroundImage.layer.backgroundColor = UIColor.clear.cgColor
+            
+        }
+        if(counter % 2 == 1){
+            player.pause()
+            //player.playbackState = .paused
+            albumBackgroundImage.layer.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0).cgColor
+        }
+        
+        
+    }
     func setUI(){
+        self.backgroundImage.image = #imageLiteral(resourceName: "solidBlack")
+        
+        
         albumArtImage.layer.cornerRadius = albumArtImage.frame.height/2
         albumArtImage.clipsToBounds = true
         
@@ -121,15 +147,21 @@ class mainView: UIViewController {
         self.songNameLabel?.layer.shadowRadius = 3
         self.songNameLabel?.layer.shadowOpacity = 0.6
         
-        //self.durationSlider.setThumbImage(UIImage(named: "sliderBar.png"), for: .normal)
-        
+        self.durationSlider.setThumbImage(UIImage(named: "sliderBar.png"), for: .normal)
+        durationSlider.maximumTrackTintColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
+        durationSlider.minimumTrackTintColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         
         //sets the volume slider controller
         self.volumeView.backgroundColor = UIColor.clear
         self.volumeSlider = MPVolumeView(frame: self.volumeView.bounds)
         self.volumeView.addSubview(self.volumeSlider!)
-        //self.volumeSlider?.setVolumeThumbImage(UIImage(named: "sliderBar.png"), for: .normal)
-        self.backgroundImage.image = #imageLiteral(resourceName: "solidBlack")
+        self.volumeSlider?.setVolumeThumbImage(UIImage(named: "sliderBar.png"), for: .normal)
+        self.volumeSlider?.tintColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
+        
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        albumArtImage.addGestureRecognizer(tap)
         
         
     }
