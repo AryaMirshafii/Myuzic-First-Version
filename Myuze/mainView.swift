@@ -42,6 +42,8 @@ class mainView: UIViewController {
     var volumeSlider: MPVolumeView?
     
     var timer = Timer()
+    var playlistNames = [String]()
+    var playlistArray = [MPMediaItemCollection]()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -79,6 +81,10 @@ class mainView: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(self.updateUI), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange , object: nil)
         notificationCenter.addObserver(self, selector: #selector(self.updatePlaybackUI), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange , object: nil)
         
+        self.loadPlaylists()
+        self.setupPlaylistGesture()
+        playlistNameLabel.text = playlistNames[0]
+        
     }
     override func viewDidAppear(_ animated: Bool){
         let status = MPMediaLibrary.authorizationStatus()
@@ -97,7 +103,7 @@ class mainView: UIViewController {
     }
     
     func startPlaying(){
-        mediaItems = MPMediaQuery.albums().items!
+        self.mediaItems = MPMediaQuery.albums().items!
         let mediaCollection = MPMediaItemCollection(items: self.mediaItems)
         self.player.setQueue(with: mediaCollection)
         player.prepareToPlay()
@@ -255,21 +261,20 @@ class mainView: UIViewController {
         self.volumeSlider?.setVolumeThumbImage(UIImage(named: "sliderBar.png"), for: .normal)
         self.volumeSlider?.tintColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         
-        
-        
-       
-        
-        
+        self.shuffleButton.setImage(#imageLiteral(resourceName: "theShuffleButton"), for: .normal)
+        self.repeatButton.setImage(#imageLiteral(resourceName: "repeatButton"), for: .normal)
+        self.smartShuffleButton.setImage(#imageLiteral(resourceName: "smartButton"), for: .normal)
         
         
         
     }
     
+    
     @objc func updateUI(){
         //sets the album artwork
         if(player.nowPlayingItem?.artwork != nil){
             albumArtImage.image = player.nowPlayingItem?.artwork?.image(at: albumArtImage.frame.size)
-            print(albumArtImage.frame.size)
+            print(#imageLiteral(resourceName: "repeatButton").size)
         } else {
             let anImage = #imageLiteral(resourceName: "noArtworkFound")
             //anImage.sizeThatFits(albumArtImage.frame.size)
@@ -289,14 +294,80 @@ class mainView: UIViewController {
             artistNameLabel.text = player.nowPlayingItem?.artist!
         }
         
-        //sets the values of the sliders
+    }
+    private func loadPlaylists() {
+        self.mediaItems = MPMediaQuery.albums().items!
+        self.playlistNames += ["No Playlist Selected"]
+        self.playlistArray += [MPMediaItemCollection(items: self.mediaItems)]
+        let myPlaylistsQuery = MPMediaQuery.playlists()
+        var playlists = myPlaylistsQuery.collections
+       
         
+        for aPlaylist in playlists! {
+            
+            let names = String(describing: aPlaylist.value(forProperty: MPMediaPlaylistPropertyName))
+            
+            if(!aPlaylist.items.isEmpty) {
+                self.playlistArray += [aPlaylist]
+                self.playlistNames += [names]
+            } 
+            
+            
+        }
+    }
+    
+    func setupPlaylistGesture(){
+        let playlistRight = UISwipeGestureRecognizer(target: self, action: #selector(self.playlistResponse))
+       
+        playlistRight.direction = UISwipeGestureRecognizerDirection.right
+        playlistRight.cancelsTouchesInView = false
+        self.playlistSelectorView.addGestureRecognizer(playlistRight)
+        //self.view.addGestureRecognizer(swipeRight)
         
-        
-        
+        let playlistLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.playlistResponse))
+        playlistLeft.cancelsTouchesInView = false
+        playlistLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.playlistSelectorView.addGestureRecognizer(playlistLeft)
         
     }
     
+    var indx = 0
+    @objc func playlistResponse(gesture: UIGestureRecognizer) {
+        print(indx)
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            
+            switch swipeGesture.direction {
+                case UISwipeGestureRecognizerDirection.left:
+                    indx += 1
+                    
+                    if(indx < (playlistNames.count - 1) && indx > 0){
+                        self.playlistNameLabel.text =  String(stringInterpolationSegment:playlistNames[indx])
+                        self.player.setQueue(with: playlistArray[indx])
+                        player.play()
+                    } else if(indx > (playlistNames.count - 1)){
+                        indx = 0
+                    }
+                
+                case UISwipeGestureRecognizerDirection.right:
+                    indx -= 1
+                    
+                    if(indx < (playlistNames.count - 1) && indx > 0){
+                        self.playlistNameLabel.text = String(stringInterpolationSegment:playlistNames[indx])
+                        self.player.setQueue(with: playlistArray[indx])
+                        player.play()
+                    } else if(indx > (playlistNames.count - 1) || indx < 0){
+                        indx = 0
+                    }
+                default:
+                break
+            }
+        }
+    }
+    
+    
+    
+    @IBAction func smartShufflePressed(_ sender: Any) {
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
