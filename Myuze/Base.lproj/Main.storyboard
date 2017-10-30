@@ -95,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Is0-5W-TY6">
-                                <rect key="frame" x="21" y="634" width="333" height="12"/>
+                                <rect key="frame" x="21" y="624" width="333" height="12"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YQV-TB-bAB">
@@ -127,12 +127,17 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PUd-x4-MoP">
+                                <rect key="frame" x="3" y="34" width="372" height="461"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="c0n-ec-oZN" firstAttribute="leading" secondItem="Oz0-HI-Jx5" secondAttribute="leading" constant="3" id="02d-jB-X9u"/>
-                            <constraint firstItem="Is0-5W-TY6" firstAttribute="top" secondItem="vFb-9N-uqp" secondAttribute="bottom" constant="17" id="1La-fn-A5g"/>
+                            <constraint firstItem="Is0-5W-TY6" firstAttribute="top" secondItem="vFb-9N-uqp" secondAttribute="bottom" constant="7" id="1La-fn-A5g"/>
                             <constraint firstItem="hQZ-d6-p2c" firstAttribute="bottom" secondItem="YQV-TB-bAB" secondAttribute="bottom" id="1te-vo-hNQ"/>
                             <constraint firstItem="c0n-ec-oZN" firstAttribute="trailing" secondItem="9Xs-9E-lEl" secondAttribute="trailing" id="47d-ld-Qyo"/>
                             <constraint firstItem="c0n-ec-oZN" firstAttribute="centerY" secondItem="9NX-UE-NB4" secondAttribute="centerY" id="9HL-PM-x5c"/>
@@ -173,7 +178,7 @@
                             <constraint firstItem="bQE-Rb-lZE" firstAttribute="centerY" secondItem="Dma-V4-Ucc" secondAttribute="centerY" id="tVb-vm-qtz"/>
                             <constraint firstItem="aKG-h1-6v1" firstAttribute="top" secondItem="pUL-Sy-K9W" secondAttribute="bottom" constant="14" id="uzr-4K-gOo"/>
                             <constraint firstItem="9NX-UE-NB4" firstAttribute="top" secondItem="95i-6L-tyh" secondAttribute="bottom" constant="16" id="wBj-nF-0dK"/>
-                            <constraint firstItem="Wnc-Ch-ptM" firstAttribute="top" secondItem="Is0-5W-TY6" secondAttribute="bottom" constant="21" id="wL4-dX-ypj"/>
+                            <constraint firstItem="Wnc-Ch-ptM" firstAttribute="top" secondItem="Is0-5W-TY6" secondAttribute="bottom" constant="31" id="wL4-dX-ypj"/>
                             <constraint firstItem="YQV-TB-bAB" firstAttribute="baseline" secondItem="vFb-9N-uqp" secondAttribute="baseline" id="wsL-Kb-vrn"/>
                             <constraint firstAttribute="trailing" secondItem="GZQ-dv-jMZ" secondAttribute="trailing" id="xVN-p8-QPJ"/>
                             <constraint firstItem="Dma-V4-Ucc" firstAttribute="centerX" secondItem="hQZ-d6-p2c" secondAttribute="centerX" id="xrI-dc-WoC"/>
@@ -196,13 +201,14 @@
                         <outlet property="shuffleButton" destination="hQZ-d6-p2c" id="o0f-J0-Zri"/>
                         <outlet property="smartShuffleButton" destination="vFb-9N-uqp" id="dog-VK-cMU"/>
                         <outlet property="songNameLabel" destination="aKG-h1-6v1" id="irr-Bo-rHJ"/>
+                        <outlet property="swipeZone" destination="PUd-x4-MoP" id="k7a-Yz-VrD"/>
                         <outlet property="timeRemainingLabel" destination="9Xs-9E-lEl" id="pRE-Jm-fE9"/>
                         <outlet property="volumeView" destination="Is0-5W-TY6" id="aLb-8g-rDi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zuP-OY-4py" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="289.5" y="517.5"/>
+            <point key="canvasLocation" x="288.80000000000001" y="516.79160419790105"/>
         </scene>
     </scenes>
 </document>

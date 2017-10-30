@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import MediaPlayer
 import MarqueeLabel
-
+extension UILabel {
+    
+   
+}
 class mainView: UIViewController {
     
     
@@ -29,6 +32,7 @@ class mainView: UIViewController {
     @IBOutlet weak var repeatButton: UIButton!
     @IBOutlet weak var shuffleButton: UIButton!
     @IBOutlet weak var smartShuffleButton: UIButton!
+    @IBOutlet weak var swipeZone: UIView!
     
     
     
@@ -37,6 +41,8 @@ class mainView: UIViewController {
     var mediaItems:[MPMediaItem]!
     var volumeSlider: MPVolumeView?
     
+    var timer = Timer()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
@@ -44,6 +50,35 @@ class mainView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setUI()
+        durationSlider.addTarget(self, action: #selector(setDurationValue), for: [.touchUpInside, .touchUpOutside])
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        swipeZone.addGestureRecognizer(tap)
+        
+        
+        
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(gesture:)))
+        swipeRight.addTarget(self, action: #selector(self.handleSwipe(gesture:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        swipeRight.cancelsTouchesInView = false
+        swipeZone.addGestureRecognizer(swipeRight)
+        //self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(gesture:)))
+        swipeLeft.cancelsTouchesInView = false
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.swipeZone.addGestureRecognizer(swipeLeft)
+        
+        
+        
+        
+        
+        
+        self.player.beginGeneratingPlaybackNotifications()
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(self.updateUI), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange , object: nil)
+        notificationCenter.addObserver(self, selector: #selector(self.updatePlaybackUI), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange , object: nil)
+        
     }
     override func viewDidAppear(_ animated: Bool){
         let status = MPMediaLibrary.authorizationStatus()
@@ -66,6 +101,44 @@ class mainView: UIViewController {
         let mediaCollection = MPMediaItemCollection(items: self.mediaItems)
         self.player.setQueue(with: mediaCollection)
         player.prepareToPlay()
+        player.pause()
+        updateDuration()
+    }
+    
+    
+    
+    
+    @objc func updatePlaybackUI(){
+        if(player.playbackState == .paused){
+            albumBackgroundImage.layer.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0).cgColor
+            timer.invalidate()
+        } else if(player.playbackState == .playing){
+             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateDuration), userInfo: nil, repeats: true)
+            albumBackgroundImage.layer.backgroundColor = UIColor.clear.cgColor
+        }
+    }
+    @objc func updateDuration(){
+        durationSlider.maximumValue = Float((player.nowPlayingItem?.playbackDuration)!)
+        durationSlider.setValue(Float(player.currentPlaybackTime), animated: false)
+        
+        currentTimeLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.value))
+        timeRemainingLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.maximumValue-durationSlider.value))
+        
+    }
+    
+    func secondsToMinutesSeconds (seconds : Int) -> (String) {
+        let minutes = String((seconds % 3600) / 60)
+        var secondsString = String((seconds % 3600) % 60)
+        
+        if(secondsString.characters.count == 1 && ((seconds % 3600) % 60) > 10) {
+            secondsString += "0"
+        }else if (secondsString.characters.count == 1 && ((seconds % 3600) % 60) < 10){
+            secondsString = "0" + secondsString
+        }
+        return minutes + ":" + secondsString
+    }
+    @objc func setDurationValue(){
+        player.currentPlaybackTime = TimeInterval(durationSlider.value)
     }
     
     var counter = 0
@@ -73,24 +146,48 @@ class mainView: UIViewController {
         
         counter += 1
         
-        if( counter % 2 == 0){
+        if( counter % 2 == 1){
             player.play()
+            print("playing")
             //player.playbackState = .playing
             albumBackgroundImage.layer.backgroundColor = UIColor.clear.cgColor
             
         }
-        if(counter % 2 == 1){
+        if(counter % 2 == 0){
             player.pause()
+            print("paused")
             //player.playbackState = .paused
             albumBackgroundImage.layer.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0).cgColor
         }
         
         
     }
+    
+    @objc func handleSwipe(gesture: UIGestureRecognizer) {
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+        switch swipeGesture.direction {
+                
+            case UISwipeGestureRecognizerDirection.right:
+                player.skipToPreviousItem()
+                print("going back")
+            case UISwipeGestureRecognizerDirection.left:
+                player.skipToNextItem()
+                print("going forward")
+            default:
+                break
+            }
+        }
+        
+        
+        
+        
+    }
+    
     func setUI(){
         self.backgroundImage.image = #imageLiteral(resourceName: "solidBlack")
-        
-        
+        self.playlistSelectorView.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
+        self.playlistSelectorView.layer.cornerRadius = playlistSelectorView.frame.height/2
         albumArtImage.layer.cornerRadius = albumArtImage.frame.height/2
         albumArtImage.clipsToBounds = true
         
@@ -160,17 +257,23 @@ class mainView: UIViewController {
         
         
         
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        albumArtImage.addGestureRecognizer(tap)
+       
+        
+        
+        
         
         
     }
-    func updateUI(){
+    
+    @objc func updateUI(){
         //sets the album artwork
         if(player.nowPlayingItem?.artwork != nil){
             albumArtImage.image = player.nowPlayingItem?.artwork?.image(at: albumArtImage.frame.size)
+            print(albumArtImage.frame.size)
         } else {
-            albumArtImage.image = #imageLiteral(resourceName: "noArtworkFound")
+            let anImage = #imageLiteral(resourceName: "noArtworkFound")
+            //anImage.sizeThatFits(albumArtImage.frame.size)
+            albumArtImage.image = anImage
         }
         
         /// sets the name of the song
@@ -181,11 +284,12 @@ class mainView: UIViewController {
         if(player.nowPlayingItem?.albumTitle != nil && player.nowPlayingItem?.artist != nil ){
             artistNameLabel.text = (player.nowPlayingItem?.artist!)! + " - " + (player.nowPlayingItem?.albumTitle!)!
         } else if(player.nowPlayingItem?.albumTitle != nil && player.nowPlayingItem?.artist == nil ){
-            artistNameLabel.text = player.nowPlayingItem?.artist!
-        } else if(player.nowPlayingItem?.albumTitle == nil && player.nowPlayingItem?.artist != nil ){
             artistNameLabel.text = player.nowPlayingItem?.albumTitle!
+        } else if(player.nowPlayingItem?.albumTitle == nil && player.nowPlayingItem?.artist != nil ){
+            artistNameLabel.text = player.nowPlayingItem?.artist!
         }
         
+        //sets the values of the sliders
         
         
         
