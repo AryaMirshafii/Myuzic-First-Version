@@ -21,10 +21,12 @@ class mainView: UIViewController {
     @IBOutlet weak var backgroundShadowImage: UIImageView!
     @IBOutlet weak var albumBackgroundImage: UIImageView!
     @IBOutlet weak var albumArtImage: UIImageView!
-    @IBOutlet weak var songNameLabel: MarqueeLabel!
+   
+    @IBOutlet weak var songNameLabel: UILabel!
     @IBOutlet weak var durationSlider: UISlider!
     @IBOutlet weak var currentTimeLabel: UILabel!
-    @IBOutlet weak var artistNameLabel: MarqueeLabel!
+    
+    @IBOutlet weak var artistNameLabel: UILabel!
     @IBOutlet weak var playlistSelectorView: UIView!
     @IBOutlet weak var playlistNameLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
@@ -305,7 +307,7 @@ class mainView: UIViewController {
         
         for aPlaylist in playlists! {
             
-            let names = String(describing: aPlaylist.value(forProperty: MPMediaPlaylistPropertyName))
+            let names:String = aPlaylist.value(forProperty: MPMediaPlaylistPropertyName)! as! String
             
             if(!aPlaylist.items.isEmpty) {
                 self.playlistArray += [aPlaylist]
@@ -332,6 +334,7 @@ class mainView: UIViewController {
     }
     
     var indx = 0
+    
     @objc func playlistResponse(gesture: UIGestureRecognizer) {
         print(indx)
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -341,7 +344,7 @@ class mainView: UIViewController {
                     indx += 1
                     
                     if(indx < (playlistNames.count - 1) && indx > 0){
-                        self.playlistNameLabel.text =  String(stringInterpolationSegment:playlistNames[indx])
+                        self.playlistNameLabel.text =  "" + String(stringInterpolationSegment:playlistNames[indx])
                         self.player.setQueue(with: playlistArray[indx])
                         player.play()
                     } else if(indx > (playlistNames.count - 1)){

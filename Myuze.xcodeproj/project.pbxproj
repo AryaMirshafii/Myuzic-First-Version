@@ -14,6 +14,10 @@
 		D14B77B51FA5899F00DA0771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D14B77B41FA5899F00DA0771 /* Assets.xcassets */; };
 		D14B77B81FA5899F00DA0771 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14B77B61FA5899F00DA0771 /* LaunchScreen.storyboard */; };
 		D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D161A70B1FA693A80043BBC8 /* mainView.swift */; };
+		D16909461FA78B3F00AE7390 /* songViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16909451FA78B3F00AE7390 /* songViewCell.swift */; };
+		D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16909471FA78C3400AE7390 /* songViewTable.swift */; };
+		D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */; };
+		D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +34,10 @@
 		D14B77B71FA5899F00DA0771 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D14B77B91FA5899F00DA0771 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D161A70B1FA693A80043BBC8 /* mainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainView.swift; sourceTree = "<group>"; };
+		D16909451FA78B3F00AE7390 /* songViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songViewCell.swift; sourceTree = "<group>"; };
+		D16909471FA78C3400AE7390 /* songViewTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songViewTable.swift; sourceTree = "<group>"; };
+		D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
+		D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,13 +93,25 @@
 				D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */,
 				D14B77AC1FA5899F00DA0771 /* ViewController.swift */,
 				D14B77AE1FA5899F00DA0771 /* Main.storyboard */,
+				D169094D1FA8D05E00AE7390 /* songView */,
 				D161A70B1FA693A80043BBC8 /* mainView.swift */,
 				D14B77B41FA5899F00DA0771 /* Assets.xcassets */,
 				D14B77B61FA5899F00DA0771 /* LaunchScreen.storyboard */,
 				D14B77B91FA5899F00DA0771 /* Info.plist */,
 				D14B77B11FA5899F00DA0771 /* Myuze.xcdatamodeld */,
+				D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */,
+				D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */,
 			);
 			path = Myuze;
+			sourceTree = "<group>";
+		};
+		D169094D1FA8D05E00AE7390 /* songView */ = {
+			isa = PBXGroup;
+			children = (
+				D16909451FA78B3F00AE7390 /* songViewCell.swift */,
+				D16909471FA78C3400AE7390 /* songViewTable.swift */,
+			);
+			path = songView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +249,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
+				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,
+				D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */,
 				D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */,
+				D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */,
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,
+				D16909461FA78B3F00AE7390 /* songViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
