@@ -110,6 +110,7 @@ class mainView: UIViewController {
         self.player.setQueue(with: mediaCollection)
         player.prepareToPlay()
         player.pause()
+        albumBackgroundImage.layer.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0).cgColor
         updateDuration()
     }
     
@@ -126,11 +127,14 @@ class mainView: UIViewController {
         }
     }
     @objc func updateDuration(){
-        durationSlider.maximumValue = Float((player.nowPlayingItem?.playbackDuration)!)
-        durationSlider.setValue(Float(player.currentPlaybackTime), animated: false)
-        
-        currentTimeLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.value))
-        timeRemainingLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.maximumValue-durationSlider.value))
+        if (player.nowPlayingItem != nil) {
+            durationSlider.maximumValue = Float((player.nowPlayingItem?.playbackDuration)!)
+            durationSlider.setValue(Float(player.currentPlaybackTime), animated: false)
+            
+            currentTimeLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.value))
+            timeRemainingLabel.text = secondsToMinutesSeconds(seconds: Int(durationSlider.maximumValue-durationSlider.value))
+        }
+       
         
     }
     

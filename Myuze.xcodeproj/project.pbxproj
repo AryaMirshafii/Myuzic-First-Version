@@ -18,6 +18,8 @@
 		D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16909471FA78C3400AE7390 /* songViewTable.swift */; };
 		D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */; };
 		D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */; };
+		D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */; };
+		D16909511FA8D58A00AE7390 /* AlbumTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094F1FA8D58900AE7390 /* AlbumTableView.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		D16909471FA78C3400AE7390 /* songViewTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = songViewTable.swift; sourceTree = "<group>"; };
 		D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapContainerViewController.swift; sourceTree = "<group>"; };
 		D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
+		D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableCell.swift; sourceTree = "<group>"; };
+		D169094F1FA8D58900AE7390 /* AlbumTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 		D14B77A91FA5899F00DA0771 /* Myuze */ = {
 			isa = PBXGroup;
 			children = (
+				D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */,
+				D169094F1FA8D58900AE7390 /* AlbumTableView.swift */,
 				D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */,
 				D14B77AC1FA5899F00DA0771 /* ViewController.swift */,
 				D14B77AE1FA5899F00DA0771 /* Main.storyboard */,
@@ -248,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */,
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
 				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,
 				D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */,
@@ -256,6 +263,7 @@
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,
 				D16909461FA78B3F00AE7390 /* songViewCell.swift in Sources */,
+				D16909511FA8D58A00AE7390 /* AlbumTableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

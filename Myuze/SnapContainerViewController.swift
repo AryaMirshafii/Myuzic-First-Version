@@ -77,7 +77,9 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate,UIGest
     
     
     
-    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     @objc func shouldSwitchView(){
         self.getTilt()

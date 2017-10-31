@@ -1,52 +1,62 @@
 //
-//  songViewTable.swift
-//  Myuze
+//  AlbumTableView.swift
+//  UITableViewController
 //
-//  Created by arya mirshafii on 10/30/17.
-//  Copyright © 2017 Myuze. All rights reserved.
+//  Created by arya mirshafii on 6/23/17.
+//  Copyright © 2017 Myuzick. All rights reserved.
 //
 
-import UIKit
+import Foundation
 import MediaPlayer
+import UIKit
 
-class songViewTable:UITableViewController, UISearchBarDelegate {
-    var songsDict = [String:[MPMediaItem]]()
+class AlbumTableView : UITableViewController,UISearchBarDelegate {
+    var albumsDict = [String:[MPMediaItem]]()
     var sectionTitles = [String]()
     var searchText = " "
     var isSearching = false
     
     
     
-    
-    
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.generateSongsDict(songs: MPMediaQuery.songs().items!)
+        self.generateAlbumsDict(songs: MPMediaQuery.albums().items!)
         self.setUI()
-       
+        
     }
     
-    
-    func generateSongsDict(songs: [MPMediaItem]){
+    var previousAlbum = "someString"
+    func generateAlbumsDict(songs: [MPMediaItem]){
         
-        songsDict.removeAll()
+        albumsDict.removeAll()
         for aSong in songs {
-            
-            var key = "\(aSong.title![(aSong.title?.startIndex)!])"
-            key = key.lowercased()
-            if var songsAtKey = songsDict[key] {
-                songsAtKey.append(aSong)
-                songsDict[key] = songsAtKey
-                
-            } else {
-                songsDict[key] = [aSong]
+            if(aSong.artist != nil && aSong.albumTitle != nil){
+                let key = aSong.albumTitle?.lowercased()
+                if(aSong.albumTitle != previousAlbum){
+                    albumsDict[key!] = [aSong]
+                    previousAlbum = aSong.albumTitle!
+                } else if var albumAtKey = albumsDict[key!] {
+                    albumAtKey.append(aSong)
+                    albumsDict[key!] = albumAtKey
+                    
+                }
             }
+            
         }
         
-        sectionTitles = [String](songsDict.keys)
+        
+        
+        
+        
+        
+        
+        sectionTitles = [String](albumsDict.keys)
         sectionTitles = sectionTitles.sorted()
         
     }
@@ -71,13 +81,9 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
         let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
         textFieldInsideSearchBar?.backgroundColor = .black
         self.searchBar.backgroundImage = #imageLiteral(resourceName: "solidBlack")
-        self.tableView.tableHeaderView = self.searchBar
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return sectionTitles[section].uppercased()
-    }
+   
     override func numberOfSections(in tableView: UITableView) -> Int {
         
         return sectionTitles.count
@@ -86,45 +92,47 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /**
         let wordKey = sectionTitles[section].lowercased()
         
-        if let songValues = songsDict[wordKey.lowercased()]{
+        if let songValues = albumsDict[wordKey.lowercased()]{
             return songValues.count
         }
-        return 0
+         */
+        return 1
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "songViewCell"
+        let cellIdentifier = "albumTableCell"
         
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? songViewCell  else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AlbumTableCell  else {
             fatalError("The dequeued cell is not an instance of songViewCell.")
         }
         
         let key = sectionTitles[indexPath.section]
         print(key)
-        let songArray = songsDict[key.lowercased()]
+        let songArray = albumsDict[key.lowercased()]
         
         //checks if artistname is empty
         if(songArray?[indexPath.row].artist != nil){
-            cell.artistAlbumLabel.text = songArray?[indexPath.row].artist
+            cell.albumArtist.text = songArray?[indexPath.row].artist
             
         } else {
-            cell.artistAlbumLabel.text = " "
+            cell.albumArtist.text = " "
         }
         //checks if albumart is empty
         if(songArray?[indexPath.row].artwork == nil){
             cell.albumArt.image = #imageLiteral(resourceName: "noArtworkFound")
         } else {
-            cell.albumArt.image = songArray?[indexPath.row].artwork?.image(at: CGSize(width: 200, height: 200))
+            cell.albumArt.image = songArray?[0].artwork?.image(at: CGSize(width: 200, height: 200))
         }
         
         
-        cell.songNameLabel.text = songArray?[indexPath.row].title
+        cell.albumTitle.text = songArray?[0].albumTitle
         
-       
+        
         
         
         
@@ -135,23 +143,16 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("You selected cell number: \(indexPath.row)!")
         let wordKey = sectionTitles[indexPath.section]
-        //print(wordKey)
-        let songArray = songsDict[wordKey.lowercased()]
-        
-        
+        let songArray = albumsDict[wordKey.lowercased()]
         tableView.deselectRow(at: indexPath, animated: true)
         let player = MPMusicPlayerController.applicationMusicPlayer
-        let song = songArray?[indexPath.row]
-        
-        let mediaCollection = MPMediaItemCollection(items: [song!])
+        let mediaCollection = MPMediaItemCollection(items: songArray!)
         player.setQueue(with: mediaCollection)
         player.play()
         
-        tableView.sectionIndexColor = UIColor.white
-        
     }
     
-    
+    /**
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
@@ -173,24 +174,10 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
         
         return headerView
     }
+ 
+     */
     
     
-    
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-        guard let index = sectionTitles.index(of: title) else {
-            
-            return -1
-        }
-        
-        return index
-        
-    }
-    
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        
-        return sectionTitles
-        
-    }
     
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -229,7 +216,7 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
             //self.addView.frame = CGRect(x: 0, y: 0, width: 357, height: 194)
             isSearching = false
             
-            self.generateSongsDict(songs: MPMediaQuery.songs().items!)
+            self.generateAlbumsDict(songs: MPMediaQuery.songs().items!)
             self.tableView.reloadData()
             print("ARYA SEARCHING")
             
@@ -256,21 +243,20 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     func filterTableView(text: String) {
         
         //extracts all value in the dictionary
-        let allSongs = songsDict.flatMap(){ $0.1 }
-
+        let allSongs = albumsDict.flatMap(){ $0.1 }
+        
         
         let songs = allSongs.filter({ (mod) -> Bool in
             
             
             return (mod.title?.lowercased().contains(text.lowercased()))! || (mod.albumTitle?.lowercased().contains(text.lowercased()))! ||
-            (mod.artist?.lowercased().contains(text.lowercased()))!
+                (mod.artist?.lowercased().contains(text.lowercased()))!
         })
-        self.generateSongsDict(songs: songs)
+        self.generateAlbumsDict(songs: songs)
         
         self.tableView.reloadData()
         
     }
-    
     
     
     
