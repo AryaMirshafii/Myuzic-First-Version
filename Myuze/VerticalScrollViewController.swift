@@ -79,7 +79,7 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
         }
         let currentPitch = degrees(radians: roll!)
         //print(currentPitch)
-        if(currentPitch < 0){
+        if(currentPitch < -10){
             switchView = true
             
             

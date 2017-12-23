@@ -26,8 +26,25 @@ class AlbumTableView : UITableViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.generateAlbumsDict(songs: MPMediaQuery.albums().items!)
-        self.setUI()
+        
+        let status = MPMediaLibrary.authorizationStatus()
+        switch status {
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization({ (status) in
+                UIControl().sendAction(#selector(NSXPCConnection.suspend),
+                                       to: UIApplication.shared, for: nil)
+                self.generateAlbumsDict(songs: MPMediaQuery.albums().items!)
+                self.setUI()
+                
+            })
+        case .authorized:
+            self.generateAlbumsDict(songs: MPMediaQuery.albums().items!)
+            self.setUI()
+        default:
+            break
+        }
+        
+        
         
     }
     

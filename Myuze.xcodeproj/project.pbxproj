@@ -20,6 +20,8 @@
 		D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */; };
 		D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */; };
 		D16909511FA8D58A00AE7390 /* AlbumTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094F1FA8D58900AE7390 /* AlbumTableView.swift */; };
+		D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */; };
+		D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableCell.swift; sourceTree = "<group>"; };
 		D169094F1FA8D58900AE7390 /* AlbumTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableView.swift; sourceTree = "<group>"; };
+		D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serverManager.swift; sourceTree = "<group>"; };
+		D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				D14B77B11FA5899F00DA0771 /* Myuze.xcdatamodeld */,
 				D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */,
 				D16909491FA79F0900AE7390 /* SnapContainerViewController.swift */,
+				D1CC25BA1FEEDFCD003CEB0F /* Data_And_Server_Files */,
 			);
 			path = Myuze;
 			sourceTree = "<group>";
@@ -118,6 +123,15 @@
 				D16909471FA78C3400AE7390 /* songViewTable.swift */,
 			);
 			path = songView;
+			sourceTree = "<group>";
+		};
+		D1CC25BA1FEEDFCD003CEB0F /* Data_And_Server_Files */ = {
+			isa = PBXGroup;
+			children = (
+				D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */,
+				D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */,
+			);
+			path = Data_And_Server_Files;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,11 +232,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Myuze/Pods-Myuze-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -259,6 +277,8 @@
 				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,
 				D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */,
 				D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */,
+				D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */,
+				D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */,
 				D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */,
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,
@@ -402,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6JK3GN4CAL;
+				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = Myuze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team.Myuze;
@@ -418,7 +438,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6JK3GN4CAL;
+				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = Myuze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = team.Myuze;

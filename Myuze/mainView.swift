@@ -46,6 +46,8 @@ class mainView: UIViewController {
     var timer = Timer()
     var playlistNames = [String]()
     var playlistArray = [MPMediaItemCollection]()
+    var serverController = serverManager()
+    var dataController = dataManager()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -82,10 +84,14 @@ class mainView: UIViewController {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(self.updateUI), name: NSNotification.Name.MPMusicPlayerControllerNowPlayingItemDidChange , object: nil)
         notificationCenter.addObserver(self, selector: #selector(self.updatePlaybackUI), name: NSNotification.Name.MPMusicPlayerControllerPlaybackStateDidChange , object: nil)
+        let status = MPMediaLibrary.authorizationStatus()
+        if(status == .authorized){
+            self.loadPlaylists()
+            playlistNameLabel.text = playlistNames[0]
+        }
         
-        self.loadPlaylists()
         self.setupPlaylistGesture()
-        playlistNameLabel.text = playlistNames[0]
+        
         
     }
     override func viewDidAppear(_ animated: Bool){
@@ -93,8 +99,10 @@ class mainView: UIViewController {
         switch status {
         case .notDetermined:
             MPMediaLibrary.requestAuthorization({ (status) in
-                self.startPlaying()
-                self.updateUI()
+                UIControl().sendAction(#selector(NSXPCConnection.suspend),
+                                       to: UIApplication.shared, for: nil)
+                //self.startPlaying()
+                //self.updateUI()
             })
         case .authorized:
             self.startPlaying()
@@ -277,6 +285,21 @@ class mainView: UIViewController {
     
     
     @objc func updateUI(){
+        
+        let adress = serverController.checkLocation()
+        print(adress)
+        if(dataController.checkIfLocationExists(locationID: adress)){
+            print("IT already exists! Putting data")
+            let objectIDToAdd = dataController.getObjectID(locationID: adress)
+            serverController.put(objectID: objectIDToAdd, songtoAdd: (player.nowPlayingItem?.title)!)
+            
+            
+        } else {
+            print("it doesnt exist! Posting data")
+            serverController.postData(locationID: adress, songtoAdd: (player.nowPlayingItem?.title)!)
+            serverController.saveToCoreData()
+        }
+        
         //sets the album artwork
         if(player.nowPlayingItem?.artwork != nil){
             albumArtImage.image = player.nowPlayingItem?.artwork?.image(at: albumArtImage.frame.size)

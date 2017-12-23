@@ -24,8 +24,27 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.generateSongsDict(songs: MPMediaQuery.songs().items!)
-        self.setUI()
+        
+        
+        let status = MPMediaLibrary.authorizationStatus()
+        switch status {
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization({ (status) in
+                UIControl().sendAction(#selector(NSXPCConnection.suspend),
+                                       to: UIApplication.shared, for: nil)
+                self.generateSongsDict(songs: MPMediaQuery.songs().items!)
+                self.setUI()
+                
+            })
+        case .authorized:
+            self.generateSongsDict(songs: MPMediaQuery.songs().items!)
+            self.setUI()
+        default:
+            break
+        }
+        
+        
+        
        
     }
     
