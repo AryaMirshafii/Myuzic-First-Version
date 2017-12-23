@@ -20,6 +20,8 @@
 		D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */; };
 		D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */; };
 		D16909511FA8D58A00AE7390 /* AlbumTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094F1FA8D58900AE7390 /* AlbumTableView.swift */; };
+		D17F3F0C1FEEE68B006FD67E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = D17F3F0B1FEEE68B006FD67E /* Fonts */; };
+		D17F3F0D1FEF004B006FD67E /* Fonts in Sources */ = {isa = PBXBuildFile; fileRef = D17F3F0B1FEEE68B006FD67E /* Fonts */; };
 		D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */; };
 		D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
@@ -44,6 +46,7 @@
 		D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableCell.swift; sourceTree = "<group>"; };
 		D169094F1FA8D58900AE7390 /* AlbumTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableView.swift; sourceTree = "<group>"; };
+		D17F3F0B1FEEE68B006FD67E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serverManager.swift; sourceTree = "<group>"; };
 		D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +106,7 @@
 				D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */,
 				D14B77AC1FA5899F00DA0771 /* ViewController.swift */,
 				D14B77AE1FA5899F00DA0771 /* Main.storyboard */,
+				D17F3F0B1FEEE68B006FD67E /* Fonts */,
 				D169094D1FA8D05E00AE7390 /* songView */,
 				D161A70B1FA693A80043BBC8 /* mainView.swift */,
 				D14B77B41FA5899F00DA0771 /* Assets.xcassets */,
@@ -204,6 +208,7 @@
 				D14B77B81FA5899F00DA0771 /* LaunchScreen.storyboard in Resources */,
 				D14B77B51FA5899F00DA0771 /* Assets.xcassets in Resources */,
 				D14B77B01FA5899F00DA0771 /* Main.storyboard in Resources */,
+				D17F3F0C1FEEE68B006FD67E /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17F3F0D1FEF004B006FD67E /* Fonts in Sources */,
 				D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */,
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
 				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,

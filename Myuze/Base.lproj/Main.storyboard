@@ -12,6 +12,9 @@
         <array key="ArialBold.ttf">
             <string>Arial-BoldMT</string>
         </array>
+        <array key="HKGrotesk-SemiBoldLegacy.ttf">
+            <string>HKGrotesk-SemiBoldLegacy</string>
+        </array>
         <array key="Sansation_Bold.ttf">
             <string>Sansation-Bold</string>
         </array>
@@ -40,7 +43,7 @@
                         <viewControllerLayoutGuide type="top" id="pUL-Sy-K9W"/>
                         <viewControllerLayoutGuide type="bottom" id="Wnc-Ch-ptM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="mY2-Kc-ZTm">
+                    <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="mY2-Kc-ZTm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -122,7 +125,7 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES"/>
                                 </accessibility>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="20"/>
+                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
@@ -142,7 +145,7 @@
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" none="YES"/>
                                 </accessibility>
-                                <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="23"/>
+                                <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="23"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>

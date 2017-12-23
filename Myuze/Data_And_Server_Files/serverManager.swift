@@ -43,7 +43,12 @@ class serverManager: NSObject, CLLocationManagerDelegate{
                 let json = JSON(data)
                 previousSong = json.dictionaryObject!["songList"] as! String
                 previousLocation = json.dictionaryObject!["locationName"] as! String
-                let params = [ "songList": previousSong + " @" +  songtoAdd,"locationName": previousLocation] as [String : Any]
+                var songArray = [String]()
+                songArray.append(previousSong)
+                songArray.append(songtoAdd)
+                
+                //let params = [ "songList": previousSong + " @" +  songtoAdd,"locationName": previousLocation] as [String : Any]
+                let params = [ "songList": songArray,"locationName": previousLocation] as [String : Any]
                 Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
                     .responseJSON { response in
                         debugPrint(response)
@@ -59,7 +64,7 @@ class serverManager: NSObject, CLLocationManagerDelegate{
     
     func postData(locationID:String, songtoAdd: String){
         
-        let parameters = [ "locationName":  locationID ,"songList": songtoAdd + "@"] as [String : Any]
+        let parameters = [ "locationName":  locationID ,"songList": songtoAdd] as [String : Any]
         
         //create the url with URL
         let url = URL(string: stringURL)! //change the url

@@ -189,9 +189,12 @@ class mainView: UIViewController {
         switch swipeGesture.direction {
                 
             case UISwipeGestureRecognizerDirection.right:
+                self.serverTimer.invalidate()
                 player.skipToPreviousItem()
+                
                 print("going back")
             case UISwipeGestureRecognizerDirection.left:
+                self.serverTimer.invalidate()
                 player.skipToNextItem()
                 print("going forward")
             default:
@@ -282,23 +285,33 @@ class mainView: UIViewController {
         
         
     }
+    @objc func updateServer(timer:Timer){
+        print("the current playing song is " + (player.nowPlayingItem?.title)! + " while the song given is " + String(describing: timer.userInfo!))
+        if((player.nowPlayingItem?.title)! == String(describing: timer.userInfo!)){
+            let adress = serverController.checkLocation()
+            print(adress)
+            if(dataController.checkIfLocationExists(locationID: adress)){
+                print("IT already exists! Putting data")
+                let objectIDToAdd = dataController.getObjectID(locationID: adress)
+                serverController.put(objectID: objectIDToAdd, songtoAdd: (player.nowPlayingItem?.title)!)
+                
+                
+            } else {
+                print("it doesnt exist! Posting data")
+                serverController.postData(locationID: adress, songtoAdd: (player.nowPlayingItem?.title)!)
+                serverController.saveToCoreData()
+            }
+        }
+        
+    }
     
-    
+    var serverTimer:Timer = Timer()
     @objc func updateUI(){
         
-        let adress = serverController.checkLocation()
-        print(adress)
-        if(dataController.checkIfLocationExists(locationID: adress)){
-            print("IT already exists! Putting data")
-            let objectIDToAdd = dataController.getObjectID(locationID: adress)
-            serverController.put(objectID: objectIDToAdd, songtoAdd: (player.nowPlayingItem?.title)!)
-            
-            
-        } else {
-            print("it doesnt exist! Posting data")
-            serverController.postData(locationID: adress, songtoAdd: (player.nowPlayingItem?.title)!)
-            serverController.saveToCoreData()
-        }
+        
+        var previousTitle = (player.nowPlayingItem?.title)!
+        serverTimer =  Timer.scheduledTimer(timeInterval: ((player.nowPlayingItem?.playbackDuration)! / 2), target: self, selector:#selector(updateServer(timer:)), userInfo: previousTitle, repeats:false)
+        
         
         //sets the album artwork
         if(player.nowPlayingItem?.artwork != nil){

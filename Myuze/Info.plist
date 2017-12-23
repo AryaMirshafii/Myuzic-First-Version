@@ -4,6 +4,27 @@
 <dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>HKGrotesk-MediumLegacy.ttf</string>
+		<string>HKGrotesk-Regular.ttf</string>
+		<string>HKGrotesk-RegularLegacy.ttf</string>
+		<string>HKGrotesk-SemiBold.ttf</string>
+		<string>HKGrotesk-SemiBoldItalic.ttf</string>
+		<string>HKGrotesk-SemiBoldLegacy.ttf</string>
+		<string>HKGrotesk-Light.ttf</string>
+		<string>HKGrotesk-LightItalic.ttf</string>
+		<string>HKGrotesk-LightItalicLegacy.ttf</string>
+		<string>HKGrotesk-LightLegacy.ttf</string>
+		<string>HKGrotesk-Medium.ttf</string>
+		<string>HKGrotesk-MediumItalic.ttf</string>
+		<string>HKGrotesk-MediumItalicLegacy.ttf</string>
+		<string>HKGrotesk-BoldItalic.ttf</string>
+		<string>HKGrotesk-BoldItalicLegacy.ttf</string>
+		<string>HKGrotesk-Italic.ttf</string>
+		<string>HKGrotesk-ItalicLegacy.ttf</string>
+		<string>HKGrotesk-Bold.ttf</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
