@@ -9,12 +9,18 @@
 import Foundation
 import CoreData
 import UIKit
+import SwiftCSVExport
 
 class dataManager{
     private var objectIDTable: [NSManagedObject] = []
     
     init(){
         self.loadData()
+    }
+    
+    func aiTestFunction(){
+        
+        
     }
     
     func saveData(objectID:String, locationID:String){

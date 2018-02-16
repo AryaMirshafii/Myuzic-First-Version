@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D135ECF01FF75C3F00F5EAD7 /* albumPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135ECEF1FF75C3F00F5EAD7 /* albumPopoverViewController.swift */; };
 		D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */; };
 		D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B77AC1FA5899F00DA0771 /* ViewController.swift */; };
 		D14B77B01FA5899F00DA0771 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14B77AE1FA5899F00DA0771 /* Main.storyboard */; };
@@ -20,8 +21,9 @@
 		D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */; };
 		D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */; };
 		D16909511FA8D58A00AE7390 /* AlbumTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D169094F1FA8D58900AE7390 /* AlbumTableView.swift */; };
-		D17F3F0C1FEEE68B006FD67E /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = D17F3F0B1FEEE68B006FD67E /* Fonts */; };
-		D17F3F0D1FEF004B006FD67E /* Fonts in Sources */ = {isa = PBXBuildFile; fileRef = D17F3F0B1FEEE68B006FD67E /* Fonts */; };
+		D182289C201512EB00CF87AC /* BMPAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182289B201512EB00CF87AC /* BMPAnalyzer.swift */; };
+		D18228A52015130600CF87AC /* Superpowered.mm in Sources */ = {isa = PBXBuildFile; fileRef = D182289F2015130500CF87AC /* Superpowered.mm */; };
+		D18228A62015130600CF87AC /* libSuperpoweredAudioIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D18228A32015130600CF87AC /* libSuperpoweredAudioIOS.a */; };
 		D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */; };
 		D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */; };
 		F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */; };
@@ -31,6 +33,44 @@
 		2323D0722077BC7D51990C80 /* Pods-Myuze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Myuze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Myuze/Pods-Myuze.debug.xcconfig"; sourceTree = "<group>"; };
 		6AFD46150D4DB7CB062C6C01 /* Pods-Myuze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Myuze.release.xcconfig"; path = "Pods/Target Support Files/Pods-Myuze/Pods-Myuze.release.xcconfig"; sourceTree = "<group>"; };
 		7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Myuze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D135ECC81FF6DD8B00F5EAD7 /* HKGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Bold.ttf"; sourceTree = "<group>"; };
+		D135ECC91FF6DD8B00F5EAD7 /* HKGrotesk-ItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-ItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECCA1FF6DD8B00F5EAD7 /* HKGrotesk-BoldLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECCB1FF6DD8C00F5EAD7 /* HKGrotesk-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightItalic.ttf"; sourceTree = "<group>"; };
+		D135ECCC1FF6DD8C00F5EAD7 /* HKGrotesk-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumItalic.ttf"; sourceTree = "<group>"; };
+		D135ECCD1FF6DD8C00F5EAD7 /* HKGrotesk-LightItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECCE1FF6DD8C00F5EAD7 /* HKGrotesk-MediumItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECCF1FF6DD8D00F5EAD7 /* HKGrotesk-RegularLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-RegularLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECD01FF6DD8D00F5EAD7 /* HKGrotesk-BoldItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECD11FF6DD8D00F5EAD7 /* Prime Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Light.otf"; sourceTree = "<group>"; };
+		D135ECD21FF6DD8D00F5EAD7 /* CODE Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Light.otf"; sourceTree = "<group>"; };
+		D135ECD31FF6DD8D00F5EAD7 /* HKGrotesk-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldItalic.ttf"; sourceTree = "<group>"; };
+		D135ECD41FF6DD8D00F5EAD7 /* Infinity.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Infinity.ttf; sourceTree = "<group>"; };
+		D135ECD51FF6DD8E00F5EAD7 /* CODE Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CODE Bold.otf"; sourceTree = "<group>"; };
+		D135ECD61FF6DD8E00F5EAD7 /* HKGrotesk-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Italic.ttf"; sourceTree = "<group>"; };
+		D135ECD71FF6DD8E00F5EAD7 /* HKGrotesk-SemiBoldItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldItalicLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECD81FF6DD8E00F5EAD7 /* HKGrotesk-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBold.ttf"; sourceTree = "<group>"; };
+		D135ECDA1FF6DD8F00F5EAD7 /* palanquindark-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-medium.ttf"; sourceTree = "<group>"; };
+		D135ECDB1FF6DD8F00F5EAD7 /* SIL Open Font License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "SIL Open Font License.txt"; sourceTree = "<group>"; };
+		D135ECDC1FF6DD8F00F5EAD7 /* palanquin-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-regular.ttf"; sourceTree = "<group>"; };
+		D135ECDD1FF6DD8F00F5EAD7 /* palanquindark-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-regular.ttf"; sourceTree = "<group>"; };
+		D135ECDE1FF6DD8F00F5EAD7 /* palanquindark-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-bold.ttf"; sourceTree = "<group>"; };
+		D135ECDF1FF6DD8F00F5EAD7 /* palanquin-thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-thin.ttf"; sourceTree = "<group>"; };
+		D135ECE01FF6DD8F00F5EAD7 /* palanquin-extralight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-extralight.ttf"; sourceTree = "<group>"; };
+		D135ECE11FF6DD8F00F5EAD7 /* palanquin-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-bold.ttf"; sourceTree = "<group>"; };
+		D135ECE21FF6DD8F00F5EAD7 /* palanquin-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-light.ttf"; sourceTree = "<group>"; };
+		D135ECE31FF6DD8F00F5EAD7 /* palanquin-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-semibold.ttf"; sourceTree = "<group>"; };
+		D135ECE41FF6DD8F00F5EAD7 /* palanquin-medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquin-medium.ttf"; sourceTree = "<group>"; };
+		D135ECE51FF6DD8F00F5EAD7 /* palanquindark-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "palanquindark-semibold.ttf"; sourceTree = "<group>"; };
+		D135ECE61FF6DD8F00F5EAD7 /* Prime Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Prime Regular.otf"; sourceTree = "<group>"; };
+		D135ECE71FF6DD8F00F5EAD7 /* HKGrotesk-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Regular.ttf"; sourceTree = "<group>"; };
+		D135ECE81FF6DD8F00F5EAD7 /* HKGrotesk-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Medium.ttf"; sourceTree = "<group>"; };
+		D135ECE91FF6DD8F00F5EAD7 /* HKGrotesk-MediumLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-MediumLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECEA1FF6DD8F00F5EAD7 /* HKGrotesk-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Light.ttf"; sourceTree = "<group>"; };
+		D135ECEB1FF6DD8F00F5EAD7 /* HKGrotesk-LightLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-LightLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECEC1FF6DD9000F5EAD7 /* HKGrotesk-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		D135ECED1FF6DD9000F5EAD7 /* HKGrotesk-SemiBoldLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-SemiBoldLegacy.ttf"; sourceTree = "<group>"; };
+		D135ECEF1FF75C3F00F5EAD7 /* albumPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = albumPopoverViewController.swift; sourceTree = "<group>"; };
 		D14B77A71FA5899F00DA0771 /* Myuze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Myuze.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D14B77AC1FA5899F00DA0771 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +86,18 @@
 		D169094B1FA79F2A00AE7390 /* VerticalScrollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalScrollViewController.swift; sourceTree = "<group>"; };
 		D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableCell.swift; sourceTree = "<group>"; };
 		D169094F1FA8D58900AE7390 /* AlbumTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableView.swift; sourceTree = "<group>"; };
-		D17F3F0B1FEEE68B006FD67E /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		D182289B201512EB00CF87AC /* BMPAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPAnalyzer.swift; sourceTree = "<group>"; };
+		D182289E2015130400CF87AC /* Myuze-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Myuze-Bridging-Header.h"; sourceTree = "<group>"; };
+		D182289F2015130500CF87AC /* Superpowered.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Superpowered.mm; sourceTree = "<group>"; };
+		D18228A02015130500CF87AC /* SuperpoweredDecoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredDecoder.h; sourceTree = "<group>"; };
+		D18228A12015130500CF87AC /* SuperpoweredAnalyzer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredAnalyzer.h; sourceTree = "<group>"; };
+		D18228A22015130600CF87AC /* BPMAnalyzer-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BPMAnalyzer-Bridging-Header.h"; sourceTree = "<group>"; };
+		D18228A32015130600CF87AC /* libSuperpoweredAudioIOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSuperpoweredAudioIOS.a; sourceTree = "<group>"; };
+		D18228A42015130600CF87AC /* SuperpoweredSimple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperpoweredSimple.h; sourceTree = "<group>"; };
+		D18228A72015133400CF87AC /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D18228A82015133400CF87AC /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
+		D18228A92015133400CF87AC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D18228AA2015133500CF87AC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D1CC25B61FEEDF6F003CEB0F /* serverManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serverManager.swift; sourceTree = "<group>"; };
 		D1CC25B71FEEDF6F003CEB0F /* dataManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +108,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F002A9B61FECFE7EC5FCBE37 /* Pods_Myuze.framework in Frameworks */,
+				D18228A62015130600CF87AC /* libSuperpoweredAudioIOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +118,10 @@
 		53012EB624EA37C19B4C19ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D18228A72015133400CF87AC /* AudioToolbox.framework */,
+				D18228AA2015133500CF87AC /* AVFoundation.framework */,
+				D18228A92015133400CF87AC /* CoreMedia.framework */,
+				D18228A82015133400CF87AC /* MediaToolbox.framework */,
 				7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */,
 			);
 			name = Frameworks;
@@ -78,6 +134,56 @@
 				6AFD46150D4DB7CB062C6C01 /* Pods-Myuze.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		D135ECD91FF6DD8F00F5EAD7 /* palanquin */ = {
+			isa = PBXGroup;
+			children = (
+				D135ECDA1FF6DD8F00F5EAD7 /* palanquindark-medium.ttf */,
+				D135ECDB1FF6DD8F00F5EAD7 /* SIL Open Font License.txt */,
+				D135ECDC1FF6DD8F00F5EAD7 /* palanquin-regular.ttf */,
+				D135ECDD1FF6DD8F00F5EAD7 /* palanquindark-regular.ttf */,
+				D135ECDE1FF6DD8F00F5EAD7 /* palanquindark-bold.ttf */,
+				D135ECDF1FF6DD8F00F5EAD7 /* palanquin-thin.ttf */,
+				D135ECE01FF6DD8F00F5EAD7 /* palanquin-extralight.ttf */,
+				D135ECE11FF6DD8F00F5EAD7 /* palanquin-bold.ttf */,
+				D135ECE21FF6DD8F00F5EAD7 /* palanquin-light.ttf */,
+				D135ECE31FF6DD8F00F5EAD7 /* palanquin-semibold.ttf */,
+				D135ECE41FF6DD8F00F5EAD7 /* palanquin-medium.ttf */,
+				D135ECE51FF6DD8F00F5EAD7 /* palanquindark-semibold.ttf */,
+			);
+			path = palanquin;
+			sourceTree = "<group>";
+		};
+		D135ECEE1FF6DD9700F5EAD7 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D135ECD51FF6DD8E00F5EAD7 /* CODE Bold.otf */,
+				D135ECD21FF6DD8D00F5EAD7 /* CODE Light.otf */,
+				D135ECC81FF6DD8B00F5EAD7 /* HKGrotesk-Bold.ttf */,
+				D135ECD31FF6DD8D00F5EAD7 /* HKGrotesk-BoldItalic.ttf */,
+				D135ECD01FF6DD8D00F5EAD7 /* HKGrotesk-BoldItalicLegacy.ttf */,
+				D135ECCA1FF6DD8B00F5EAD7 /* HKGrotesk-BoldLegacy.ttf */,
+				D135ECD61FF6DD8E00F5EAD7 /* HKGrotesk-Italic.ttf */,
+				D135ECC91FF6DD8B00F5EAD7 /* HKGrotesk-ItalicLegacy.ttf */,
+				D135ECEA1FF6DD8F00F5EAD7 /* HKGrotesk-Light.ttf */,
+				D135ECCB1FF6DD8C00F5EAD7 /* HKGrotesk-LightItalic.ttf */,
+				D135ECCD1FF6DD8C00F5EAD7 /* HKGrotesk-LightItalicLegacy.ttf */,
+				D135ECEB1FF6DD8F00F5EAD7 /* HKGrotesk-LightLegacy.ttf */,
+				D135ECE81FF6DD8F00F5EAD7 /* HKGrotesk-Medium.ttf */,
+				D135ECCC1FF6DD8C00F5EAD7 /* HKGrotesk-MediumItalic.ttf */,
+				D135ECCE1FF6DD8C00F5EAD7 /* HKGrotesk-MediumItalicLegacy.ttf */,
+				D135ECE91FF6DD8F00F5EAD7 /* HKGrotesk-MediumLegacy.ttf */,
+				D135ECE71FF6DD8F00F5EAD7 /* HKGrotesk-Regular.ttf */,
+				D135ECCF1FF6DD8D00F5EAD7 /* HKGrotesk-RegularLegacy.ttf */,
+				D135ECD81FF6DD8E00F5EAD7 /* HKGrotesk-SemiBold.ttf */,
+				D135ECEC1FF6DD9000F5EAD7 /* HKGrotesk-SemiBoldItalic.ttf */,
+				D135ECD71FF6DD8E00F5EAD7 /* HKGrotesk-SemiBoldItalicLegacy.ttf */,
+				D135ECED1FF6DD9000F5EAD7 /* HKGrotesk-SemiBoldLegacy.ttf */,
+				D135ECD41FF6DD8D00F5EAD7 /* Infinity.ttf */,
+			);
+			name = fonts;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		D14B779E1FA5899F00DA0771 = {
@@ -101,12 +207,17 @@
 		D14B77A91FA5899F00DA0771 /* Myuze */ = {
 			isa = PBXGroup;
 			children = (
+				D182289D201512F000CF87AC /* SuperPoweredFiles */,
 				D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */,
 				D169094F1FA8D58900AE7390 /* AlbumTableView.swift */,
 				D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */,
 				D14B77AC1FA5899F00DA0771 /* ViewController.swift */,
 				D14B77AE1FA5899F00DA0771 /* Main.storyboard */,
-				D17F3F0B1FEEE68B006FD67E /* Fonts */,
+				D135ECEF1FF75C3F00F5EAD7 /* albumPopoverViewController.swift */,
+				D135ECEE1FF6DD9700F5EAD7 /* fonts */,
+				D135ECD91FF6DD8F00F5EAD7 /* palanquin */,
+				D135ECD11FF6DD8D00F5EAD7 /* Prime Light.otf */,
+				D135ECE61FF6DD8F00F5EAD7 /* Prime Regular.otf */,
 				D169094D1FA8D05E00AE7390 /* songView */,
 				D161A70B1FA693A80043BBC8 /* mainView.swift */,
 				D14B77B41FA5899F00DA0771 /* Assets.xcassets */,
@@ -127,6 +238,21 @@
 				D16909471FA78C3400AE7390 /* songViewTable.swift */,
 			);
 			path = songView;
+			sourceTree = "<group>";
+		};
+		D182289D201512F000CF87AC /* SuperPoweredFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D182289B201512EB00CF87AC /* BMPAnalyzer.swift */,
+				D18228A22015130600CF87AC /* BPMAnalyzer-Bridging-Header.h */,
+				D18228A32015130600CF87AC /* libSuperpoweredAudioIOS.a */,
+				D182289F2015130500CF87AC /* Superpowered.mm */,
+				D18228A12015130500CF87AC /* SuperpoweredAnalyzer.h */,
+				D18228A02015130500CF87AC /* SuperpoweredDecoder.h */,
+				D18228A42015130600CF87AC /* SuperpoweredSimple.h */,
+				D182289E2015130400CF87AC /* Myuze-Bridging-Header.h */,
+			);
+			path = SuperPoweredFiles;
 			sourceTree = "<group>";
 		};
 		D1CC25BA1FEEDFCD003CEB0F /* Data_And_Server_Files */ = {
@@ -173,6 +299,7 @@
 				TargetAttributes = {
 					D14B77A61FA5899F00DA0771 = {
 						CreatedOnToolsVersion = 9.0.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -208,7 +335,6 @@
 				D14B77B81FA5899F00DA0771 /* LaunchScreen.storyboard in Resources */,
 				D14B77B51FA5899F00DA0771 /* Assets.xcassets in Resources */,
 				D14B77B01FA5899F00DA0771 /* Main.storyboard in Resources */,
-				D17F3F0C1FEEE68B006FD67E /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,12 +365,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Myuze/Pods-Myuze-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftCSVExport/SwiftCSVExport.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftCSVExport.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,14 +405,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D17F3F0D1FEF004B006FD67E /* Fonts in Sources */,
 				D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */,
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
 				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,
 				D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */,
+				D135ECF01FF75C3F00F5EAD7 /* albumPopoverViewController.swift in Sources */,
+				D182289C201512EB00CF87AC /* BMPAnalyzer.swift in Sources */,
 				D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */,
 				D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */,
 				D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */,
+				D18228A52015130600CF87AC /* Superpowered.mm in Sources */,
 				D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */,
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,
@@ -427,12 +557,19 @@
 			baseConfigurationReference = 2323D0722077BC7D51990C80 /* Pods-Myuze.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = Myuze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Myuze/SuperPoweredFiles",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = team.Myuze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Myuze/SuperPoweredFiles/Myuze-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -443,12 +580,18 @@
 			baseConfigurationReference = 6AFD46150D4DB7CB062C6C01 /* Pods-Myuze.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y4XKW822R6;
 				INFOPLIST_FILE = Myuze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Myuze/SuperPoweredFiles",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = team.Myuze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Myuze/SuperPoweredFiles/Myuze-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

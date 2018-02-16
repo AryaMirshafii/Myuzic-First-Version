@@ -8,8 +8,23 @@
 
 import UIKit
 import MediaPlayer
+public extension UIColor {
+    func convertImage() -> UIImage {
+        let rect : CGRect = CGRect(x:0,y: 0,width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context : CGContext = UIGraphicsGetCurrentContext()!
+        
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return image
+    }
+}
 
 class songViewTable:UITableViewController, UISearchBarDelegate {
+    var player = MPMusicPlayerController.applicationMusicPlayer
     var songsDict = [String:[MPMediaItem]]()
     var sectionTitles = [String]()
     var searchText = " "
@@ -24,24 +39,16 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        let status = MPMediaLibrary.authorizationStatus()
-        switch status {
-        case .notDetermined:
-            MPMediaLibrary.requestAuthorization({ (status) in
-                UIControl().sendAction(#selector(NSXPCConnection.suspend),
-                                       to: UIApplication.shared, for: nil)
-                self.generateSongsDict(songs: MPMediaQuery.songs().items!)
-                self.setUI()
-                
-            })
-        case .authorized:
+        if(!isSearching || searchBar.text == nil){
+            print("you are not searching")
             self.generateSongsDict(songs: MPMediaQuery.songs().items!)
             self.setUI()
-        default:
-            break
         }
+        var textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+        
+        textFieldInsideSearchBar?.textColor = .white
+        
+        
         
         
         
@@ -71,7 +78,11 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     }
     
     func setUI(){
-        tableView.backgroundColor = UIColor.black
+        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "BabyBlueAmbiantUpsideDOwn"))
+        self.tableView.backgroundView = backgroundImage
+        self.tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
+        
         tableView.sectionIndexBackgroundColor  = UIColor.clear
         //tableView.sectionIndexColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         
@@ -82,19 +93,24 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
         
         
         
-        self.searchBar.backgroundColor = .black
+        //self.searchBar.backgroundColor = .black
         self.searchBar.placeholder = "Search for a song, album, or artist"
         self.searchBar.delegate = self
-        self.searchBar.tintColor = .black
-        self.searchBar.layer.backgroundColor = UIColor.black.cgColor
+        //self.searchBar.tintColor = .non
+        self.searchBar.layer.backgroundColor = UIColor.clear.cgColor
         let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = .black
-        self.searchBar.backgroundImage = #imageLiteral(resourceName: "solidBlack")
+        textFieldInsideSearchBar?.backgroundColor = .clear
+        
+        self.searchBar.backgroundImage = UIColor.clear.convertImage()
         self.tableView.tableHeaderView = self.searchBar
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
+        if(isSearching){
+            self.tableView.sectionIndexColor = .clear
+            return sectionTitles[section]
+        }
+        
         return sectionTitles[section].uppercased()
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -105,68 +121,184 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let wordKey = sectionTitles[section].lowercased()
         
-        if let songValues = songsDict[wordKey.lowercased()]{
-            return songValues.count
+        if(isSearching){
+            return (songsDict[sectionTitles[section]]?.count)!
+        } else {
+            let wordKey = sectionTitles[section].lowercased()
+            if let songValues = songsDict[wordKey.lowercased()]{
+                return songValues.count
+            }
         }
+        
+        
         return 0
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "songViewCell"
-        
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? songViewCell  else {
-            fatalError("The dequeued cell is not an instance of songViewCell.")
-        }
-        
         let key = sectionTitles[indexPath.section]
-        print(key)
-        let songArray = songsDict[key.lowercased()]
         
-        //checks if artistname is empty
-        if(songArray?[indexPath.row].artist != nil){
-            cell.artistAlbumLabel.text = songArray?[indexPath.row].artist
+        
+        if(key == "artists"){
             
-        } else {
-            cell.artistAlbumLabel.text = " "
+        }else if(key == "Albums"){
+            let cellIdentifier = "albumTableCell"
+            
+            self.tableView.rowHeight = 246
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AlbumTableCell  else {
+                fatalError("The dequeued cell is not an instance of AlbumTableCell.")
+            }
+            
+           
+            
+            let songArray = songsDict["Albums"]
+            cell.songs = [songArray![indexPath.row]]
+            
+            //checks if artistname is empty
+            if(songArray?[indexPath.row].artist != nil){
+                cell.albumArtist.text = songArray?[indexPath.row].artist
+                
+            } else {
+                cell.albumArtist.text = " "
+            }
+            //checks if albumart is empty
+            if(songArray?[indexPath.row].artwork == nil){
+                cell.albumArt.image = #imageLiteral(resourceName: "noArtworkFound")
+            } else {
+                cell.albumArt.image = songArray?[indexPath.row].artwork?.image(at: CGSize(width: 200, height: 200))
+            }
+            
+            
+            cell.albumTitle.text = songArray?[indexPath.row].albumTitle
+            return cell
+        }else if(key == "Songs"){
+            self.tableView.rowHeight = 90
+            let cellIdentifier = "songViewCell"
+            
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? songViewCell  else {
+                fatalError("The dequeued cell is not an instance of songViewCell.")
+            }
+            
+            //let key = sectionTitles[indexPath.section]
+            
+            let songArray = songsDict[key]
+            
+            //checks if artistname is empty
+            if(songArray?[indexPath.row].artist != nil){
+                cell.artistAlbumLabel.text = songArray?[indexPath.row].artist
+                
+            } else {
+                cell.artistAlbumLabel.text = " "
+            }
+            //checks if albumart is empty
+            if(songArray?[indexPath.row].artwork == nil){
+                cell.albumArt.image = #imageLiteral(resourceName: "noArtworkFound")
+            } else {
+                cell.albumArt.image = songArray?[indexPath.row].artwork?.image(at: CGSize(width: 200, height: 200))
+            }
+            
+            
+            
+            cell.songNameLabel.text = songArray?[indexPath.row].title
+            
+            
+            
+            
+            
+            
+            
+            return cell
+        }else if(!isSearching) {
+            self.tableView.rowHeight = 90
+            let cellIdentifier = "songViewCell"
+            
+            
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? songViewCell  else {
+                fatalError("The dequeued cell is not an instance of songViewCell.")
+            }
+            
+            //let key = sectionTitles[indexPath.section]
+            
+            let songArray = songsDict[key.lowercased()]
+            
+            //checks if artistname is empty
+            if(songArray?[indexPath.row].artist != nil){
+                cell.artistAlbumLabel.text = songArray?[indexPath.row].artist
+                
+            } else {
+                cell.artistAlbumLabel.text = " "
+            }
+            //checks if albumart is empty
+            if(songArray?[indexPath.row].artwork == nil){
+                cell.albumArt.image = #imageLiteral(resourceName: "noArtworkFound")
+            } else {
+                cell.albumArt.image = songArray?[indexPath.row].artwork?.image(at: CGSize(width: 200, height: 200))
+            }
+            
+            
+            cell.songNameLabel.text = songArray?[indexPath.row].title
+            
+            
+            
+            
+            
+            
+            
+            
+            return cell
         }
-        //checks if albumart is empty
-        if(songArray?[indexPath.row].artwork == nil){
-            cell.albumArt.image = #imageLiteral(resourceName: "noArtworkFound")
-        } else {
-            cell.albumArt.image = songArray?[indexPath.row].artwork?.image(at: CGSize(width: 200, height: 200))
-        }
-        
-        
-        cell.songNameLabel.text = songArray?[indexPath.row].title
-        
-       
-        
-        
-        
-        return cell
+        return UITableViewCell()
     }
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         NSLog("You selected cell number: \(indexPath.row)!")
-        let wordKey = sectionTitles[indexPath.section]
-        //print(wordKey)
-        let songArray = songsDict[wordKey.lowercased()]
-        
-        
-        tableView.deselectRow(at: indexPath, animated: true)
+        view.endEditing(true)
         let player = MPMusicPlayerController.applicationMusicPlayer
-        let song = songArray?[indexPath.row]
+        if let theCell = self.tableView.cellForRow(at: indexPath) as? AlbumTableCell{
+           
+            let albumName:String = theCell.songs[0].albumTitle!
+            
+            let albumFilter = MPMediaQuery.albums().items?.filter({ (mod) -> Bool in
+                
+                
+                return (mod.albumTitle != nil && (mod.albumTitle?.lowercased().contains(albumName.lowercased()))!)
+            })
+            if(!(albumFilter?.isEmpty)!){
+                
+                let mediaCollection = MPMediaItemCollection(items: albumFilter!)
+                player.setQueue(with: mediaCollection)
+                player.play()
+            }
+        } else {
+            let wordKey = sectionTitles[indexPath.section]
+            
+            let songArray = songsDict[wordKey]
+            
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let song = songArray?[indexPath.row]
+            
+            let mediaCollection = MPMediaItemCollection(items: [song!])
+            player.setQueue(with: mediaCollection)
+            player.play()
+            
+            tableView.sectionIndexColor = UIColor.white
+            
+        }
         
-        let mediaCollection = MPMediaItemCollection(items: [song!])
-        player.setQueue(with: mediaCollection)
-        player.play()
+        if(isSearching){
+            searchBar.text = nil
+            self.generateSongsDict(songs: MPMediaQuery.albums().items!)
+            self.isSearching = false
+            self.tableView.rowHeight = 80
+            self.tableView.reloadData()
+            
+        }
         
-        tableView.sectionIndexColor = UIColor.white
         
     }
     
@@ -174,9 +306,9 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
-        
-        let headerLabel = UILabel(frame: CGRect(x: 6, y: 10, width:
-            tableView.bounds.size.width, height: tableView.bounds.size.height))
+        //tableView.bounds.size.height
+        let headerLabel = UILabel(frame: CGRect(x: 6, y: 0, width:
+            tableView.bounds.size.width, height: 90))
         headerLabel.font = UIFont(name: "Arial", size: 28)
         
         //headerLabel.textColor = UIColor(red:0.00, green:0.40, blue:0.80, alpha:1.0)
@@ -186,6 +318,8 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
         headerLabel.text = self.tableView(self.tableView, titleForHeaderInSection: section)
         //headerLabel.textAlignment = NSTextAlignment.center
         headerLabel.sizeToFit()
+        //headerLabel.clipsToBounds = true
+        headerLabel.clipsToBounds = true
         headerLabel.adjustsFontSizeToFitWidth = true
         
         headerView.addSubview(headerLabel)
@@ -243,14 +377,15 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("call me")
+        
         if searchText.isEmpty {
             //self.addView.frame = CGRect(x: 0, y: 0, width: 357, height: 194)
             isSearching = false
             
             self.generateSongsDict(songs: MPMediaQuery.songs().items!)
+            self.tableView.rowHeight = 80
             self.tableView.reloadData()
-            print("ARYA SEARCHING")
+            
             
             
         }else {
@@ -274,19 +409,80 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     
     func filterTableView(text: String) {
         
-        //extracts all value in the dictionary
-        let allSongs = songsDict.flatMap(){ $0.1 }
+        
+        self.sectionTitles = ["Songs","Albums"]
+        
+        let allSongs = MPMediaQuery.albums().items!
 
         
-        let songs = allSongs.filter({ (mod) -> Bool in
+        
+        
+        
+        let artistFilter = allSongs.filter({ (mod) -> Bool in
             
             
-            return (mod.title?.lowercased().contains(text.lowercased()))! || (mod.albumTitle?.lowercased().contains(text.lowercased()))! ||
-            (mod.artist?.lowercased().contains(text.lowercased()))!
+            return (mod.artist != nil && (mod.artist?.lowercased().contains(text.lowercased()))!)
         })
-        self.generateSongsDict(songs: songs)
+        
+        
+        
+        let titleFilter = allSongs.filter({ (mod) -> Bool in
+           
+            
+            return (mod.title != nil && (mod.title?.lowercased().contains(text.lowercased()))!)
+        })
+        
+        
+        var albumFilter = allSongs.filter({ (mod) -> Bool in
+            
+            
+            return (mod.albumTitle != nil && (mod.albumTitle?.lowercased().contains(text.lowercased()))!)
+        })
+        
+ 
+        var blankArray = [MPMediaItem]()
+        var previousAlbumTitle = ""
+        for aSong in albumFilter {
+            if(previousAlbumTitle != aSong.albumTitle){
+                blankArray.append(aSong)
+                previousAlbumTitle = aSong.albumTitle!
+            }
+        }
+        albumFilter = blankArray
+        
+          // + albumFilter + titleFilter
+        
+        self.generateSearchDict(songSortedByName: titleFilter, songSortedByAlbum: albumFilter, songSortedByArtist: artistFilter)
+        //self.generateSongsDict(songs: overallSongs)
         
         self.tableView.reloadData()
+        
+        
+    }
+    
+    
+    func generateSearchDict(songSortedByName:[MPMediaItem], songSortedByAlbum:[MPMediaItem], songSortedByArtist:[MPMediaItem]){
+        self.songsDict.removeAll()
+    
+        var albumArtistCombo = songSortedByAlbum
+        var previousAlbumTitle = ""
+        for aSong in songSortedByArtist{
+            if(aSong.albumTitle != nil && previousAlbumTitle != aSong.albumTitle){
+                albumArtistCombo.append(aSong)
+                 previousAlbumTitle = aSong.albumTitle!
+            }
+        }
+        
+        if(!songSortedByAlbum.isEmpty){
+            self.songsDict["Albums"] = albumArtistCombo
+        }
+        
+        if(!songSortedByName.isEmpty){
+            self.songsDict["Songs"] = songSortedByName + songSortedByArtist
+        }
+        
+        
+        self.sectionTitles = [String](songsDict.keys)
         
     }
     

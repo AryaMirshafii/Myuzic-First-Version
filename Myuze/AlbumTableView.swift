@@ -79,7 +79,9 @@ class AlbumTableView : UITableViewController,UISearchBarDelegate {
     }
     
     func setUI(){
-        tableView.backgroundColor = UIColor.black
+        let backgroundImage = UIImageView(image: #imageLiteral(resourceName: "BabyBlueAmbiantUpsideDOwn"))
+        self.tableView.backgroundView = backgroundImage
+        
         tableView.sectionIndexBackgroundColor  = UIColor.clear
         //tableView.sectionIndexColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         
@@ -90,14 +92,16 @@ class AlbumTableView : UITableViewController,UISearchBarDelegate {
         
         
         
-        self.searchBar.backgroundColor = .black
         self.searchBar.placeholder = "Search for a song, album, or artist"
         self.searchBar.delegate = self
-        self.searchBar.tintColor = .black
-        self.searchBar.layer.backgroundColor = UIColor.black.cgColor
+        //self.searchBar.tintColor = .non
+        self.searchBar.layer.backgroundColor = UIColor.clear.cgColor
         let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField
-        textFieldInsideSearchBar?.backgroundColor = .black
-        self.searchBar.backgroundImage = #imageLiteral(resourceName: "solidBlack")
+        textFieldInsideSearchBar?.backgroundColor = .clear
+        
+        self.searchBar.backgroundImage = UIColor.clear.convertImage()
+        self.tableView.tableHeaderView = self.searchBar
+        
     }
     
    

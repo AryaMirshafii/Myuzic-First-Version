@@ -17,9 +17,11 @@ extension UILabel {
 class mainView: UIViewController {
     
     
+    
+    
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var backgroundShadowImage: UIImageView!
-    @IBOutlet weak var albumBackgroundImage: UIImageView!
+    @IBOutlet weak var albumBackgroundImage: UIView!
     @IBOutlet weak var albumArtImage: UIImageView!
    
     @IBOutlet weak var songNameLabel: UILabel!
@@ -48,10 +50,12 @@ class mainView: UIViewController {
     var playlistArray = [MPMediaItemCollection]()
     var serverController = serverManager()
     var dataController = dataManager()
+    var isSmartShuffling = false
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,8 +95,63 @@ class mainView: UIViewController {
         }
         
         self.setupPlaylistGesture()
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        self.swipeZone.addGestureRecognizer(longPressRecognizer)
         
         
+        
+        
+    }
+    
+    @objc func longPressed(_ sender: UILongPressGestureRecognizer){
+        
+        if(sender.state == .began){
+            print("longpressed")
+            
+            
+            
+            if(player.nowPlayingItem?.albumTitle != nil){
+                let albumName:String = (player.nowPlayingItem?.albumTitle!)!
+                
+                let albumFilter = MPMediaQuery.albums().items?.filter({ (mod) -> Bool in
+                    
+                    
+                    return (mod.albumTitle != nil && (mod.albumTitle?.lowercased().contains(albumName.lowercased()))!)
+                })
+                let albumFilterCount:Int = (albumFilter?.count)!
+                if(albumFilterCount > 1){
+                    performSegue(withIdentifier: "showAlbumView", sender:nil)
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
+
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAlbumView"{
+            if let nextViewController = segue.destination as? albumPopoverViewController{
+                
+                if(player.nowPlayingItem?.albumTitle != nil){
+                    let albumName:String = (player.nowPlayingItem?.albumTitle!)!
+                    
+                    let albumFilter = MPMediaQuery.albums().items?.filter({ (mod) -> Bool in
+                        
+                        
+                        return (mod.albumTitle != nil && (mod.albumTitle?.lowercased().contains(albumName.lowercased()))!)
+                    })
+                    nextViewController.songs = albumFilter
+                    
+                }
+                
+                
+            }
+        }
     }
     override func viewDidAppear(_ animated: Bool){
         let status = MPMediaLibrary.authorizationStatus()
@@ -105,7 +164,10 @@ class mainView: UIViewController {
                 //self.updateUI()
             })
         case .authorized:
-            self.startPlaying()
+            if(player.nowPlayingItem == nil){
+                 self.startPlaying()
+            }
+            player.pause()
             self.updateUI()
         default:
             break
@@ -197,6 +259,10 @@ class mainView: UIViewController {
                 self.serverTimer.invalidate()
                 player.skipToNextItem()
                 print("going forward")
+                
+            
+            
+                
             default:
                 break
             }
@@ -208,7 +274,7 @@ class mainView: UIViewController {
     }
     
     func setUI(){
-        self.backgroundImage.image = #imageLiteral(resourceName: "solidBlack")
+        self.backgroundImage.image = #imageLiteral(resourceName: "BabyBlueAmbiant")
         self.playlistSelectorView.backgroundColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         self.playlistSelectorView.layer.cornerRadius = playlistSelectorView.frame.height/2
         albumArtImage.layer.cornerRadius = albumArtImage.frame.height/2
@@ -279,8 +345,14 @@ class mainView: UIViewController {
         self.volumeSlider?.tintColor = UIColor(red:0.15, green:0.65, blue:0.93, alpha:1.0)
         
         self.shuffleButton.setImage(#imageLiteral(resourceName: "theShuffleButton"), for: .normal)
-        self.repeatButton.setImage(#imageLiteral(resourceName: "repeatButton"), for: .normal)
-        self.smartShuffleButton.setImage(#imageLiteral(resourceName: "smartButton"), for: .normal)
+        
+        
+        
+        let smartShuffleUnselected = #imageLiteral(resourceName: "brain").withRenderingMode(.alwaysOriginal)
+        self.smartShuffleButton.setImage(smartShuffleUnselected, for: .normal)
+        
+        let repeatImageUnselected = #imageLiteral(resourceName: "repeat2").withRenderingMode(.alwaysOriginal)
+        self.repeatButton.setImage(repeatImageUnselected, for: .normal)
         
         
         
@@ -316,7 +388,7 @@ class mainView: UIViewController {
         //sets the album artwork
         if(player.nowPlayingItem?.artwork != nil){
             albumArtImage.image = player.nowPlayingItem?.artwork?.image(at: albumArtImage.frame.size)
-            print(#imageLiteral(resourceName: "repeatButton").size)
+            
         } else {
             let anImage = #imageLiteral(resourceName: "noArtworkFound")
             //anImage.sizeThatFits(albumArtImage.frame.size)
@@ -335,6 +407,21 @@ class mainView: UIViewController {
         } else if(player.nowPlayingItem?.albumTitle == nil && player.nowPlayingItem?.artist != nil ){
             artistNameLabel.text = player.nowPlayingItem?.artist!
         }
+        
+        if(isSmartShuffling){
+            DispatchQueue.global().async {
+                if(self.player.nowPlayingItem != nil){
+                    
+                    let url = self.player.nowPlayingItem?.assetURL
+                    _ = BPMAnalyzer.core.getBpmFrom(url!, completion: {[weak self] (bpm) in
+                        print("The current playing song is " + (self?.player.nowPlayingItem?.title!)! + " BPM Is " + bpm)
+                    })
+                    
+                }
+                
+            }
+        }
+        
         
     }
     private func loadPlaylists() {
@@ -410,6 +497,7 @@ class mainView: UIViewController {
     
     
     @IBAction func smartShufflePressed(_ sender: Any) {
+        isSmartShuffling = true
     }
     
     override func didReceiveMemoryWarning() {
