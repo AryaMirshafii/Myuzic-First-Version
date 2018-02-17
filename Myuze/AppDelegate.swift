@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import MediaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window?.rootViewController = snapContainer
         self.window?.makeKeyAndVisible()
+        
+        
+        let status = MPMediaLibrary.authorizationStatus()
+        switch status {
+        case .notDetermined:
+            MPMediaLibrary.requestAuthorization({ (status) in
+                UIControl().sendAction(#selector(NSXPCConnection.suspend),
+                                       to: UIApplication.shared, for: nil)
+               
+            })
+        default:
+            break
+        }
         
         return true
     }

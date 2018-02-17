@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="applicationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="D3f-aA-R4B">
-                                <rect key="frame" x="65" y="179" width="245" height="245"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="BabyBlueAmbiantUpsideDOwn" translatesAutoresizingMaskIntoConstraints="NO" id="D3f-aA-R4B">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -32,6 +32,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="applicationIcon" width="256" height="256"/>
+        <image name="BabyBlueAmbiantUpsideDOwn" width="547" height="1024"/>
     </resources>
 </document>

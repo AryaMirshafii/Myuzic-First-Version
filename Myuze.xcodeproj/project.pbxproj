@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D122F3492036834400DA03D5 /* playlistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3432036834200DA03D5 /* playlistCell.swift */; };
+		D122F34A2036834400DA03D5 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3442036834200DA03D5 /* Playlist.swift */; };
+		D122F34B2036834400DA03D5 /* playlistTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3452036834300DA03D5 /* playlistTableCell.swift */; };
+		D122F34C2036834400DA03D5 /* playlistTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3462036834300DA03D5 /* playlistTableView.swift */; };
+		D122F34D2036834400DA03D5 /* tablePlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3472036834300DA03D5 /* tablePlayerCell.swift */; };
+		D122F34E2036834400DA03D5 /* playlistTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122F3482036834300DA03D5 /* playlistTable.swift */; };
 		D135ECF01FF75C3F00F5EAD7 /* albumPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135ECEF1FF75C3F00F5EAD7 /* albumPopoverViewController.swift */; };
 		D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B77AA1FA5899F00DA0771 /* AppDelegate.swift */; };
 		D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B77AC1FA5899F00DA0771 /* ViewController.swift */; };
@@ -33,6 +39,12 @@
 		2323D0722077BC7D51990C80 /* Pods-Myuze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Myuze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Myuze/Pods-Myuze.debug.xcconfig"; sourceTree = "<group>"; };
 		6AFD46150D4DB7CB062C6C01 /* Pods-Myuze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Myuze.release.xcconfig"; path = "Pods/Target Support Files/Pods-Myuze/Pods-Myuze.release.xcconfig"; sourceTree = "<group>"; };
 		7B1CD3C7D794998C0ADE19A1 /* Pods_Myuze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Myuze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D122F3432036834200DA03D5 /* playlistCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playlistCell.swift; sourceTree = "<group>"; };
+		D122F3442036834200DA03D5 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		D122F3452036834300DA03D5 /* playlistTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playlistTableCell.swift; sourceTree = "<group>"; };
+		D122F3462036834300DA03D5 /* playlistTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = playlistTableView.swift; sourceTree = "<group>"; };
+		D122F3472036834300DA03D5 /* tablePlayerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tablePlayerCell.swift; sourceTree = "<group>"; };
+		D122F3482036834300DA03D5 /* playlistTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = playlistTable.swift; path = ../../MyuzicFinal/playlistTable.swift; sourceTree = "<group>"; };
 		D135ECC81FF6DD8B00F5EAD7 /* HKGrotesk-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-Bold.ttf"; sourceTree = "<group>"; };
 		D135ECC91FF6DD8B00F5EAD7 /* HKGrotesk-ItalicLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-ItalicLegacy.ttf"; sourceTree = "<group>"; };
 		D135ECCA1FF6DD8B00F5EAD7 /* HKGrotesk-BoldLegacy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "HKGrotesk-BoldLegacy.ttf"; sourceTree = "<group>"; };
@@ -207,6 +219,12 @@
 		D14B77A91FA5899F00DA0771 /* Myuze */ = {
 			isa = PBXGroup;
 			children = (
+				D122F3442036834200DA03D5 /* Playlist.swift */,
+				D122F3432036834200DA03D5 /* playlistCell.swift */,
+				D122F3482036834300DA03D5 /* playlistTable.swift */,
+				D122F3452036834300DA03D5 /* playlistTableCell.swift */,
+				D122F3462036834300DA03D5 /* playlistTableView.swift */,
+				D122F3472036834300DA03D5 /* tablePlayerCell.swift */,
 				D182289D201512F000CF87AC /* SuperPoweredFiles */,
 				D169094E1FA8D58800AE7390 /* AlbumTableCell.swift */,
 				D169094F1FA8D58900AE7390 /* AlbumTableView.swift */,
@@ -408,13 +426,19 @@
 				D16909501FA8D58A00AE7390 /* AlbumTableCell.swift in Sources */,
 				D14B77AD1FA5899F00DA0771 /* ViewController.swift in Sources */,
 				D169094C1FA79F2A00AE7390 /* VerticalScrollViewController.swift in Sources */,
+				D122F3492036834400DA03D5 /* playlistCell.swift in Sources */,
 				D169094A1FA79F0900AE7390 /* SnapContainerViewController.swift in Sources */,
 				D135ECF01FF75C3F00F5EAD7 /* albumPopoverViewController.swift in Sources */,
 				D182289C201512EB00CF87AC /* BMPAnalyzer.swift in Sources */,
+				D122F34C2036834400DA03D5 /* playlistTableView.swift in Sources */,
+				D122F34E2036834400DA03D5 /* playlistTable.swift in Sources */,
 				D161A70C1FA693A80043BBC8 /* mainView.swift in Sources */,
 				D1CC25B91FEEDF6F003CEB0F /* dataManager.swift in Sources */,
+				D122F34B2036834400DA03D5 /* playlistTableCell.swift in Sources */,
 				D1CC25B81FEEDF6F003CEB0F /* serverManager.swift in Sources */,
+				D122F34A2036834400DA03D5 /* Playlist.swift in Sources */,
 				D18228A52015130600CF87AC /* Superpowered.mm in Sources */,
+				D122F34D2036834400DA03D5 /* tablePlayerCell.swift in Sources */,
 				D16909481FA78C3400AE7390 /* songViewTable.swift in Sources */,
 				D14B77AB1FA5899F00DA0771 /* AppDelegate.swift in Sources */,
 				D14B77B31FA5899F00DA0771 /* Myuze.xcdatamodeld in Sources */,

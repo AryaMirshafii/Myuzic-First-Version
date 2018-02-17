@@ -23,7 +23,7 @@
         <!--View Controller-->
         <scene sceneID="Ztu-Ad-XTl">
             <objects>
-                <viewController storyboardIdentifier="left" id="rBV-Th-FjF" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="leftog" id="rBV-Th-FjF" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4s4-sc-wzN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -39,7 +39,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JWW-qe-0ej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-738.39999999999998" y="-326.08695652173918"/>
+            <point key="canvasLocation" x="-151" y="-825"/>
         </scene>
         <!--Main View-->
         <scene sceneID="MdQ-cl-yWq">
@@ -383,11 +383,11 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="albumTableCell" rowHeight="246" id="iR1-rE-3SU" customClass="AlbumTableCell" customModule="Myuze" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="246"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="albumTableCell" rowHeight="289" id="iR1-rE-3SU" customClass="AlbumTableCell" customModule="Myuze" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="289"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iR1-rE-3SU" id="mp6-pn-gIp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="246"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="289"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rMj-Uy-S3I" customClass="MarqueeLabel">
@@ -397,10 +397,6 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMi-mQ-sOr">
-                                            <rect key="frame" x="94" y="60" width="186" height="186"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpC-Zg-rgg" customClass="MarqueeLabel">
                                             <rect key="frame" x="15" y="8" width="344" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -413,9 +409,13 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="tapToScroll" value="NO"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMi-mQ-sOr">
+                                            <rect key="frame" x="85" y="66" width="205" height="205"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="albumArt" destination="jMi-mQ-sOr" id="48K-GZ-20j"/>
                                     <outlet property="albumArtist" destination="rMj-Uy-S3I" id="Cq6-dX-XWp"/>
@@ -637,6 +637,230 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7tO-UN-xXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1972" y="340"/>
+        </scene>
+        <!--Playlist Table View-->
+        <scene sceneID="ch3-M5-F5C">
+            <objects>
+                <tableViewController storyboardIdentifier="left" id="MsP-Bd-KdD" customClass="playlistTableView" customModule="MyuzicFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="90" sectionHeaderHeight="18" sectionFooterHeight="18" id="0XC-sh-Hfy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistTableCell" rowHeight="120" id="KeS-SO-bJd" customClass="playlistTableCell" customModule="MyuzicFinal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="120"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KeS-SO-bJd" id="ENK-jT-58R">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Jux-al-7eO">
+                                            <rect key="frame" x="27" y="16" width="89" height="89"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i5P-ak-U2n" customClass="MarqueeLabel">
+                                            <rect key="frame" x="124" y="44" width="225" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="33"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="scrollDuration">
+                                                    <real key="value" value="35"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="nameLabel" destination="i5P-ak-U2n" id="ZLP-Uj-sv9"/>
+                                    <outlet property="photoImageView" destination="Jux-al-7eO" id="N2C-kJ-u4e"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MealTableViewCell" rowHeight="80" id="urx-9X-fuE" customClass="MealTableViewCell" customModule="MyuzicFinal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="175.5" width="375" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="urx-9X-fuE" id="CmJ-kQ-JND">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="IDl-oz-zPo">
+                                            <rect key="frame" x="8" y="4" width="70" height="70"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YwH-gn-nMn">
+                                            <rect key="frame" x="86" y="8" width="270" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Sansation-Bold" family="Sansation" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pez-fn-OtW">
+                                            <rect key="frame" x="86" y="37" width="270" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Sansation-Bold" family="Sansation" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="albumArt" destination="IDl-oz-zPo" id="lu4-tg-EsF"/>
+                                    <outlet property="artistAlbumLabel" destination="Pez-fn-OtW" id="20T-kU-iPN"/>
+                                    <outlet property="songNameLabel" destination="YwH-gn-nMn" id="0Zj-BJ-Qe8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MsP-Bd-KdD" id="jEM-v9-QSO"/>
+                            <outlet property="delegate" destination="MsP-Bd-KdD" id="hyI-8p-Ee0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="1aw-PR-gCu"/>
+                    <connections>
+                        <segue destination="Uht-eA-LBV" kind="modal" identifier="go" id="IEE-K4-uQr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICV-iH-ffN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3506.4000000000001" y="-379.16041979010498"/>
+        </scene>
+        <!--playlistTable-->
+        <scene sceneID="LKk-UX-w04">
+            <objects>
+                <tableViewController storyboardIdentifier="playlistTable" title="playlistTable" id="eO1-Ez-Dl1" customClass="playlistTable" customModule="MyuzicFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" id="3AD-nF-5g3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="playlistCell" rowHeight="82" id="N3r-bm-327" customClass="playlistCell" customModule="MyuzicFinal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="82"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N3r-bm-327" id="GGJ-ZK-pR1">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qNC-XB-lnj">
+                                            <rect key="frame" x="19" y="8" width="65" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hLf-xq-s5B">
+                                            <rect key="frame" x="112" y="11" width="214" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="20"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lwa-G1-VWu">
+                                            <rect key="frame" x="112" y="39" width="214" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="20"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="albumArt" destination="qNC-XB-lnj" id="5sz-Nv-jxi"/>
+                                    <outlet property="albumArtist" destination="Lwa-G1-VWu" id="LN3-9O-yGU"/>
+                                    <outlet property="songName" destination="hLf-xq-s5B" id="2D4-rG-OHb"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tablePlayerCell" id="uck-Aj-i4b" customClass="tablePlayerCell" customModule="MyuzicFinal" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="110" width="375" height="62"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uck-Aj-i4b" id="sMJ-LH-SgR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="61.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ce6-NE-Uth">
+                                            <rect key="frame" x="31" y="7" width="110" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="26"/>
+                                            <state key="normal" title="Play All">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="playAllButtonPressed:" destination="eO1-Ez-Dl1" eventType="touchUpInside" id="c7w-oo-jYX"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lij-bY-eeG">
+                                            <rect key="frame" x="234" y="7" width="110" height="46"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HKGrotesk-SemiBoldLegacy" family="HK Grotesk" pointSize="26"/>
+                                            <state key="normal" title="Shuffle">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="shuffleButtonPressed:" destination="eO1-Ez-Dl1" eventType="touchUpInside" id="QVn-OY-ZZr"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="playButton" destination="ce6-NE-Uth" id="IHe-z2-aLu"/>
+                                    <outlet property="shuffleButton" destination="lij-bY-eeG" id="fDN-N1-tc0"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eO1-Ez-Dl1" id="ZTf-XD-fMZ"/>
+                            <outlet property="delegate" destination="eO1-Ez-Dl1" id="Nlk-X4-zZe"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="sOD-CU-XdF">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="EWB-aV-Mu7">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="goBack:" destination="eO1-Ez-Dl1" id="EAU-HN-xNQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3nz-oI-sWM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1146" y="-379"/>
+        </scene>
+        <!--Nav Controller-->
+        <scene sceneID="Lyb-vl-6f6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x8h-VE-5vR" customClass="navController" customModule="MyuzicFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4E5-nI-ukz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="MsP-Bd-KdD" kind="relationship" relationship="rootViewController" id="sDZ-6g-tmz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d3v-L0-caG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4452" y="-379"/>
+        </scene>
+        <!--Nav Controller-->
+        <scene sceneID="8vq-fV-wQ8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uht-eA-LBV" customClass="navController" customModule="MyuzicFinal" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Z6u-RB-skP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eO1-Ez-Dl1" kind="relationship" relationship="rootViewController" id="Zhw-W8-IFU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7cS-NX-5as" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2447" y="-379"/>
         </scene>
     </scenes>
     <resources>

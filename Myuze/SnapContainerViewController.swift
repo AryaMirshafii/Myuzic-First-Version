@@ -1,10 +1,4 @@
-//
-//  ContainerViewController.swift
-//  SnapchatSwipeView
-//
-//  Created by Jake Spracher on 8/9/15.
-//  Copyright (c) 2015 Jake Spracher. All rights reserved.
-//
+
 
 import UIKit
 import MediaPlayer

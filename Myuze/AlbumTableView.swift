@@ -33,6 +33,7 @@ class AlbumTableView : UITableViewController,UISearchBarDelegate {
             MPMediaLibrary.requestAuthorization({ (status) in
                 UIControl().sendAction(#selector(NSXPCConnection.suspend),
                                        to: UIApplication.shared, for: nil)
+                
                 self.generateAlbumsDict(songs: MPMediaQuery.albums().items!)
                 self.setUI()
                 
@@ -44,7 +45,7 @@ class AlbumTableView : UITableViewController,UISearchBarDelegate {
             break
         }
         
-        
+        self.tableView.rowHeight = 289
         
     }
     
