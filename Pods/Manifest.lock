@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.6.0)
+  - MarqueeLabel (3.1.4):
+    - MarqueeLabel/ObjC (= 3.1.4)
+  - MarqueeLabel/ObjC (3.1.4)
+  - SideMenu (3.1.5)
+  - SwiftCSVExport (2.0.0)
+  - SwiftyJSON (4.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - MarqueeLabel
+  - SideMenu
+  - SwiftCSVExport
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
+  SideMenu: 47dbf9e4d878062d8994aed43f6e4bf6c1fea30b
+  SwiftCSVExport: 36d07bf350d17baacb5a9e9568afe77ff3e5d0f3
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+
+PODFILE CHECKSUM: c9d326e287e2afdd71f55e02075a210fb13ecaa4
+
+COCOAPODS: 1.3.1
