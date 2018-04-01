@@ -28,7 +28,7 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
     let motionManager: CMMotionManager = CMMotionManager()
     let activityManager:CMMotionActivityManager = CMMotionActivityManager()
     var isRunning = false
-    
+    var userInfo = dataController()
     class func verticalScrollVcWith(topVc: UIViewController?=nil, middleVc: UIViewController,bottomVc: UIViewController?=nil) -> VerticalScrollViewController {
         let middleScrollVc = VerticalScrollViewController()
         
@@ -37,6 +37,7 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
         middleScrollVc.bottomVc = bottomVc
         
         return middleScrollVc
+        
     }
     
     override func viewDidLoad() {
@@ -45,9 +46,15 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
         setupScrollView()
         scrollView.isPagingEnabled = true
         scrollView.touchesShouldCancel(in: topVc.view)
+        
+        
+        
+        
+        
+        
         //var timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.isMiddle), userInfo: nil, repeats: true)
         
-        var tiltTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.shouldSwitchView), userInfo: nil, repeats: true)
+        //var tiltTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.shouldSwitchView), userInfo: nil, repeats: true)
         //motionManager.deviceMotionUpdateInterval = 5
         activityManager.startActivityUpdates(to: OperationQueue.main) { (activity) in
             if (activity?.running)!{
@@ -55,6 +62,14 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
             } else {
                 self.isRunning = false
             }
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    @objc func userDefaultsDidChange(){
+        if(userInfo.fetchTilt() == "true"){
+            self.shouldSwitchView()
         }
     }
     
@@ -90,7 +105,7 @@ class VerticalScrollViewController: UIViewController, SnapContainerViewControlle
     }
     
     func degrees(radians:Double) -> Double {
-        return 180 / M_PI * radians
+        return 180 / Double.pi * radians
     }
 
     

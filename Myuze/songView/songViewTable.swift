@@ -29,6 +29,7 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
     var sectionTitles = [String]()
     var searchText = " "
     var isSearching = false
+    var userInfo = dataController()
     
     
     
@@ -49,10 +50,15 @@ class songViewTable:UITableViewController, UISearchBarDelegate {
         textFieldInsideSearchBar?.textColor = .white
         
         
-        
+        let hold = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongTap(_:)))
+        view.addGestureRecognizer(hold)
         
         
        
+    }
+    @objc func handleLongTap(_ sender: UILongPressGestureRecognizer){
+        print("Tapped longly")
+        userInfo.saveTilt(state: "true")
     }
     
     

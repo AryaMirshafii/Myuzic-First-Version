@@ -10,9 +10,25 @@ import Foundation
 import UIKit
 import MediaPlayer
 import MarqueeLabel
+
 extension UILabel {
     
    
+}
+
+extension String {
+    subscript(_ range: CountableRange<Int>) -> String {
+        let idx1 = index(startIndex, offsetBy: range.lowerBound)
+        
+        if(range.upperBound > endIndex.encodedOffset) {
+            var idx2 = index(startIndex, offsetBy: endIndex.encodedOffset)
+            return String(self[idx1..<idx2])
+        }
+        var idx2 = index(startIndex, offsetBy: range.upperBound)
+        return String(self[idx1..<idx2])
+        
+    }
+    var count: Int { return characters.count }
 }
 class mainView: UIViewController {
     
@@ -49,8 +65,9 @@ class mainView: UIViewController {
     var playlistNames = [String]()
     var playlistArray = [MPMediaItemCollection]()
     var serverController = serverManager()
-    var dataController = dataManager()
+    
     var isSmartShuffling = false
+    var userData = dataController()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -62,22 +79,27 @@ class mainView: UIViewController {
         self.setUI()
         durationSlider.addTarget(self, action: #selector(setDurationValue), for: [.touchUpInside, .touchUpOutside])
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        tap.cancelsTouchesInView = false
         swipeZone.addGestureRecognizer(tap)
         
         
         
         
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(gesture:)))
-        swipeRight.addTarget(self, action: #selector(self.handleSwipe(gesture:)))
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
+        //swipeRight.addTarget(self, action: #selector(self.handleSwipe(_ :)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         swipeRight.cancelsTouchesInView = false
+        
         swipeZone.addGestureRecognizer(swipeRight)
         //self.view.addGestureRecognizer(swipeRight)
+        albumArtImage.addGestureRecognizer(swipeRight)
         
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(gesture:)))
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipe(_:)))
         swipeLeft.cancelsTouchesInView = false
         swipeLeft.direction = UISwipeGestureRecognizerDirection.left
         self.swipeZone.addGestureRecognizer(swipeLeft)
+        //self.view.addGestureRecognizer(swipeLeft)
+        albumArtImage.addGestureRecognizer(swipeLeft)
         
         
         
@@ -96,12 +118,14 @@ class mainView: UIViewController {
         
         self.setupPlaylistGesture()
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressed(_:)))
+        longPressRecognizer.cancelsTouchesInView = false
         self.swipeZone.addGestureRecognizer(longPressRecognizer)
         
         
         
-        
     }
+    
+    
     
     @objc func longPressed(_ sender: UILongPressGestureRecognizer){
         
@@ -245,7 +269,7 @@ class mainView: UIViewController {
         
     }
     
-    @objc func handleSwipe(gesture: UIGestureRecognizer) {
+    @objc func handleSwipe( _ gesture: UISwipeGestureRecognizer) {
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
         switch swipeGesture.direction {
@@ -357,11 +381,27 @@ class mainView: UIViewController {
         
         
     }
+    
+    @IBAction func goNext(_ sender: Any) {
+        player.skipToNextItem()
+        
+        
+        
+        
+        
+    
+    }
+    
+    @IBAction func previous(_ sender: Any) {
+        print(serverController.getPredictions())
+    }
     @objc func updateServer(timer:Timer){
+        /**
         print("the current playing song is " + (player.nowPlayingItem?.title)! + " while the song given is " + String(describing: timer.userInfo!))
         if((player.nowPlayingItem?.title)! == String(describing: timer.userInfo!)){
             let adress = serverController.checkLocation()
             print(adress)
+            /**
             if(dataController.checkIfLocationExists(locationID: adress)){
                 print("IT already exists! Putting data")
                 let objectIDToAdd = dataController.getObjectID(locationID: adress)
@@ -369,19 +409,80 @@ class mainView: UIViewController {
                 
                 
             } else {
+ */
                 print("it doesnt exist! Posting data")
-                serverController.postData(locationID: adress, songtoAdd: (player.nowPlayingItem?.title)!)
-                serverController.saveToCoreData()
+            
+            
+            
+            var songName = self.player.nowPlayingItem?.title
+            var artistname = " "
+            if(self.player.nowPlayingItem?.artist != nil){
+                artistname = (self.player.nowPlayingItem?.artist)!
             }
+            
+            
+            var albumName = " "
+            if(self.player.nowPlayingItem?.albumTitle != nil){
+                albumName = (self.player.nowPlayingItem?.albumTitle)!
+            }
+            
+            var numberOfPlays:Int = 0
+            if(self.player.nowPlayingItem?.playCount != nil){
+                numberOfPlays = (self.player.nowPlayingItem?.playCount)!
+            }
+            
+            var genre = " "
+            if(self.player.nowPlayingItem?.genre != nil){
+                genre = (self.player.nowPlayingItem?.genre)!
+            }
+            var newBpm:Int! = 0
+           // self.serverController.postData(locationID: adress, songName: songName!, bpm: String(newBpm), artistName: artistname , albumName: albumName, numberOfPlays: String(numberOfPlays), genre: genre)
+            //self.serverController.post2(genre: genre, numberOfPlays: String(numberOfPlays), albumName: albumName, artistName: artistname, bpm: String(newBpm), songName: songName!, locationName: adress)
+
+            
+            
+            
+            
+                //serverController.postData(locationID: adress, songtoAdd: (player.nowPlayingItem?.title)!)
+            
+                //serverController.saveToCoreData()
+            
+            DispatchQueue.global().async {
+                if(self.player.nowPlayingItem != nil){
+                    
+                    let url = self.player.nowPlayingItem?.assetURL
+                    _ = BPMAnalyzer.core.getBpmFrom(url!, completion: {[weak self] (bpm) in
+                        print("The current playing song is " + (self?.player.nowPlayingItem?.title!)! + " BPM Is " + bpm)
+                        
+                        if(String(bpm[9..<10]) == "."){
+                            newBpm = Int(bpm[7..<9])
+                        } else {
+                             newBpm = Int(bpm[7..<10])
+                        }
+                       
+                        
+                        print("the BPMMMM isss" + String(newBpm))
+                        //self?.serverController.post2(genre: genre, numberOfPlays: String(numberOfPlays), albumName: albumName, artistName: artistname, bpm: String(newBpm), songName: songName!, locationName: adress)
+
+                        
+                        
+                    })
+                    
+                }
+                
+            }
+            //}
         }
+       
         
+        */
     }
     
     var serverTimer:Timer = Timer()
     @objc func updateUI(){
         
         
-        var previousTitle = (player.nowPlayingItem?.title)!
+        let previousTitle = (player.nowPlayingItem?.title)!
         serverTimer =  Timer.scheduledTimer(timeInterval: ((player.nowPlayingItem?.playbackDuration)! / 2), target: self, selector:#selector(updateServer(timer:)), userInfo: previousTitle, repeats:false)
         
         
@@ -407,7 +508,7 @@ class mainView: UIViewController {
         } else if(player.nowPlayingItem?.albumTitle == nil && player.nowPlayingItem?.artist != nil ){
             artistNameLabel.text = player.nowPlayingItem?.artist!
         }
-        
+        /**
         if(isSmartShuffling){
             DispatchQueue.global().async {
                 if(self.player.nowPlayingItem != nil){
@@ -420,8 +521,87 @@ class mainView: UIViewController {
                 }
                 
             }
+ 
+        }
+        */
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        var songName = self.player.nowPlayingItem?.title
+        var artistname = " "
+        if(self.player.nowPlayingItem?.artist != nil){
+            artistname = (self.player.nowPlayingItem?.artist)!
         }
         
+        
+        var albumName = " "
+        if(self.player.nowPlayingItem?.albumTitle != nil){
+            albumName = (self.player.nowPlayingItem?.albumTitle)!
+        }
+        
+        var numberOfPlays:Int! = 0
+        if(self.player.nowPlayingItem?.playCount != nil){
+            numberOfPlays = (self.player.nowPlayingItem?.playCount)!
+        }
+        
+        var genre = " "
+        if(self.player.nowPlayingItem?.genre != nil){
+            genre = (self.player.nowPlayingItem?.genre)!
+        }
+        var newBpm:Int! = 0
+        let adress = serverController.checkLocation()
+        var numberOfSkips:Int! = 0
+        numberOfSkips = (player.nowPlayingItem?.skipCount)!
+        var duration:Int! = 0
+        duration =   Int((player.nowPlayingItem?.playbackDuration)!)
+        var lastPlayed = player.nowPlayingItem?.lastPlayedDate
+        if(lastPlayed == nil){
+            lastPlayed = Date()
+        }
+        
+        let calendar = NSCalendar.current
+        let components = calendar.component(.hour, from: lastPlayed!)
+        let lastHour:Int! = components
+        DispatchQueue.global().async {
+            if(self.player.nowPlayingItem != nil){
+                
+                let url = self.player.nowPlayingItem?.assetURL
+                if(url != nil){
+                    _ = BPMAnalyzer.core.getBpmFrom(url!, completion: {[weak self] (bpm) in
+                        print("The current playing song is " + (self?.player.nowPlayingItem?.title!)! + " BPM Is " + bpm)
+                        if(bpm != nil) {
+                            if(String(bpm[9..<10]) == "."){
+                                newBpm = Int(bpm[7..<9])
+                            } else {
+                                newBpm = Int(bpm[7..<10])
+                            }
+                        }
+                        if(newBpm != nil) {
+                            print("the last day is" + String(describing: lastPlayed))
+                            self?.serverController.post2(genre: genre, numberOfPlays: String(numberOfPlays), albumName: albumName, artistName: artistname, bpm: String(newBpm), songName: songName!, locationName: adress, numberOfSkips: String(numberOfSkips), duration: String(duration), lastPlayed: String(lastHour))
+                        }
+                        
+                        
+                       
+                        
+                        
+                        
+                    })
+                }
+                
+                
+            }
+            
+        }
         
     }
     private func loadPlaylists() {
@@ -429,7 +609,7 @@ class mainView: UIViewController {
         self.playlistNames += ["No Playlist Selected"]
         self.playlistArray += [MPMediaItemCollection(items: self.mediaItems)]
         let myPlaylistsQuery = MPMediaQuery.playlists()
-        var playlists = myPlaylistsQuery.collections
+        let playlists = myPlaylistsQuery.collections
        
         
         for aPlaylist in playlists! {
@@ -462,7 +642,7 @@ class mainView: UIViewController {
     
     var indx = 0
     
-    @objc func playlistResponse(gesture: UIGestureRecognizer) {
+    @objc func playlistResponse(_ gesture: UISwipeGestureRecognizer) {
         print(indx)
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             

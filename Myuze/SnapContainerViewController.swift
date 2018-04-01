@@ -34,6 +34,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate,UIGest
     let player = MPMusicPlayerController.applicationMusicPlayer
     var pitch: Double!
     var data: CMDeviceMotion!
+    var userInfo = dataController()
     class func containerViewWith(_ leftVC: UIViewController,
                                  middleVC: UIViewController,
                                  rightVC: UIViewController,
@@ -62,11 +63,19 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate,UIGest
         
         scrollView.isPagingEnabled = true
         
-        var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.checkMiddle), userInfo: nil, repeats: true)
+       //var timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.checkMiddle), userInfo: nil, repeats: true)
         
         
         
-        var tiltTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.shouldSwitchView), userInfo: nil, repeats: true)
+        //var tiltTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(self.shouldSwitchView), userInfo: nil, repeats: true)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.userDefaultsDidChange), name: UserDefaults.didChangeNotification, object: nil)
+    }
+    
+    @objc func userDefaultsDidChange(){
+        if(userInfo.fetchTilt() == "true"){
+            self.shouldSwitchView()
+        }
     }
     
     
@@ -191,6 +200,7 @@ class SnapContainerViewController: UIViewController, UIScrollViewDelegate,UIGest
         
         scrollView.contentOffset.x = middleVertScrollVc.view.frame.origin.x
         //scrollView.contentOffset.y = (topVc?.view.frame.origin.y)!
+        
         scrollView.delegate = self
     }
     

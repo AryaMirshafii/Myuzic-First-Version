@@ -10,11 +10,16 @@ import Foundation
 import Alamofire
 import CoreLocation
 import SwiftyJSON
+import MediaPlayer
 
 class serverManager: NSObject, CLLocationManagerDelegate{
     var locationManager = CLLocationManager()
-    var stringURL:String = "http://143.215.113.101:3000/tasks/"
+    
+    var stringURL:String = "http://143.215.118.234:3000/songs/"
+    var predictionURL:String = "http://143.215.118.234:3000/aiPredictions/"
+    
     var dataController = dataManager()
+    
     func checkLocation() -> String{
         
         if(verifyUrl(urlString: stringURL)){
@@ -29,9 +34,10 @@ class serverManager: NSObject, CLLocationManagerDelegate{
             
             let newLatitude:Int = Int(floor((locationManager.location?.coordinate.latitude)! * 1000))
             let newLongitude:Int = Int(floor((locationManager.location?.coordinate.longitude)! * 1000))
-            print(String(newLatitude) + String(newLongitude))
+            print(String(newLatitude))
+            print(String(newLongitude)[1..<7])
             
-            return String(newLatitude) + String(newLongitude)
+            return String(newLatitude) + String(newLongitude)[1..<7]
         }
         return ""
         
@@ -40,7 +46,7 @@ class serverManager: NSObject, CLLocationManagerDelegate{
     
     func put(objectID:String, songtoAdd: String){
         if(verifyUrl(urlString: stringURL)){
-            var urlString = stringURL + objectID
+            let urlString = stringURL + objectID
             var previousSong:String = ""
             var previousLocation:String = ""
             Alamofire.request(urlString).responseJSON { response in
@@ -69,10 +75,12 @@ class serverManager: NSObject, CLLocationManagerDelegate{
     
     
     
-    
-    func postData(locationID:String, songtoAdd: String){
-        if(verifyUrl(urlString: stringURL)){
-            let parameters = [ "locationName":  locationID ,"songList": songtoAdd] as [String : Any]
+    /**
+    func postData(locationID:String, songName: String, bpm: String, artistName: String, albumName: String, numberOfPlays: String, genre:String){
+        print("posting")
+        //if(verifyUrl(urlString: stringURL)){
+            let parameters = [ "locationName":  locationID ,"songName": songName, "bpm": bpm, "artistName":artistName,"albumName": albumName, "numberOfPlays": numberOfPlays, "genre" : genre] as [String : Any]
+            
             
             //create the url with URL
             let url = URL(string: stringURL)! //change the url
@@ -85,6 +93,7 @@ class serverManager: NSObject, CLLocationManagerDelegate{
             request.httpMethod = "POST" //set http method as POST
             
             do {
+                print("request passed")
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
             } catch let error {
                 print(error.localizedDescription)
@@ -95,6 +104,7 @@ class serverManager: NSObject, CLLocationManagerDelegate{
             
             //create dataTask using the session object to send data to the server
             let task = session.dataTask(with: request as URLRequest, completionHandler: { data, response, error in
+                print("taks")
                 
                 guard error == nil else {
                     return
@@ -111,14 +121,62 @@ class serverManager: NSObject, CLLocationManagerDelegate{
                         print("DATA POSTED")
                     }
                 } catch let error {
+                    print("data not posted")
                     print(error.localizedDescription)
                 }
             })
             task.resume()
-        }
+      //  }
         
         
     }
+ */
+    
+    
+    func post2(genre: String, numberOfPlays: String,albumName: String, artistName: String, bpm: String, songName: String, locationName: String, numberOfSkips: String, duration: String,lastPlayed:String ){
+        let body: NSMutableDictionary? = [
+            "genre": "\(genre)",
+            "numberOfPlays": "\(numberOfPlays)",
+            "albumName": "\(albumName)",
+            "artistName": "\(artistName)",
+            "bpm": "\(bpm)",
+            "songName": "\(songName)",
+            "locationName": "\(locationName)",
+            "numberOfSkips": "\(numberOfSkips)",
+            "duration": "\(duration)",
+            "lastPlayed": "\(lastPlayed)"
+        
+        ]
+        
+        let url = NSURL(string: stringURL as String)
+        var request = URLRequest(url: url! as URL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        let data = try! JSONSerialization.data(withJSONObject: body!, options: JSONSerialization.WritingOptions.prettyPrinted)
+        
+        let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        if let json = json {
+            print(json)
+        }
+        request.httpBody = json!.data(using: String.Encoding.utf8.rawValue)
+        let alamoRequest = Alamofire.request(request as URLRequestConvertible)
+        alamoRequest.validate(statusCode: 200..<300)
+        alamoRequest.responseString { response in
+            
+            switch response.result {
+            case .success:
+                print("Posted sucessfully")
+            case .failure( _):
+                print("U failed son")
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     
     
@@ -151,6 +209,43 @@ class serverManager: NSObject, CLLocationManagerDelegate{
         
        
     }
+    
+    private var songNames = [String]()
+    func getPredictions() -> [String] {
+        
+        Alamofire.request(predictionURL).responseJSON { response in
+            
+        
+            if let myData = response.data  {
+                
+                do {
+                    
+                    let myJason = try JSON(data: myData)
+                    if(!myJason.isEmpty){
+                        let mySongs:String! = myJason[myJason.count - 1].dictionary!["songList"]?.string
+                        print("My Songs arreeeee")
+                        
+                        let songArr = mySongs.components(separatedBy: ",")
+                        for someSong in songArr {
+                            print(someSong)
+                            self.songNames.append(someSong)
+                        }
+                        
+                       
+                        
+                       
+                    }
+                } catch {
+                    print("error has happened")
+                }
+            }
+        }
+        
+        
+        return songNames
+    }
+    
+    
     
     
     
